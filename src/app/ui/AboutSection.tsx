@@ -22,16 +22,15 @@ const AboutSection = () => {
         </p>
         </div>        
       </div>
-      <div className="py-16 md:max-w-[80%] md:mx-auto md:mt-20 flex flex-col justify-around md:flex-row px-6 md:px-20">
+      <div className="py-16 sm:max-w-[90%] md:mx-auto md:mt-20 flex flex-wrap justify-around  px-6 md:px-20">
         <div className=''>
             <h3 className="text-2xl md:text-3xl font-bold mb-2">WHO WE SERVE</h3>
             <p className="text-black mb-10 md:text-xl">Choose The Path That <br /> Matches Your Journey.</p>
         </div>
 
         {/* <div className="flex flex-col sm:flex-row justify-between gap-10"> */}
-        <div className="flex flex-wrap justify-center gap-10 max-w-6xl mx-auto">
-          {/* Card 1 */}
-          <div className="flex flex-col w-full sm:w-[45%] min-w-[380px] max-w-md text-left">
+        <div className="flex flex-wrap md:flex-col justify-center gap-10 sm:max-w-[80%] mx-auto">
+          <div className="flex flex-col w-full sm:w-[45%] min-w-[290px] md:min-w-[380px] max-w-md text-left">
             <div className="relative h-64 rounded-xl overflow-hidden shadow-lg mb-6">
               <Image
                 width={300}
@@ -58,8 +57,7 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="flex flex-col w-full sm:w-[45%] min-w-[380px] max-w-md text-left">
+          <div className="flex flex-col w-full sm:w-[45%] min-w-[290px] md:min-w-[380px] max-w-md text-left">
             <div className="relative h-64 rounded-xl overflow-hidden shadow-lg mb-6">
               <Image
                 width={300}
