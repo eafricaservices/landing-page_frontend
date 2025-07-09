@@ -13,7 +13,7 @@ const AboutSection = () => {
         </div>
 
       <div className="bg-green-800 ">
-        <div className='md:max-w-[80%] md:mx-auto px-7 text-white py-10 md:py-20 flex flex-col sm:flex-row  justify-between md:gap-17 md:px-15'>
+        <div className='md:max-w-[80%] md:mx-auto px-7 text-white py-10 md:py-20 flex flex-col sm:flex-row  justify-between md:gap-13 md:px-15'>
         <h3 className="text-xl font-bold mb-4 md:text-2xl ">E-AFRICA</h3>
         <p className="text-base text-white md:text-2xl  leading-relaxed max-w-5xl">
           E-Africa is a purpose-driven company empowering Africa’s workforce through training, talent development, and strategic consulting.
@@ -22,23 +22,22 @@ const AboutSection = () => {
         </p>
         </div>        
       </div>
-      <div className="py-16 sm:max-w-[90%] md:mx-auto md:mt-20 flex flex-wrap justify-around  px-6 md:px-20">
-        <div className=''>
+      <div className="py-16 md:max-w-[90%] md:mx-auto md:mt-20 flex  flex-col sm:flex-row justify-between  ">
+        <div className='md:flex-1/2 text-center'>
             <h3 className="text-2xl md:text-3xl font-bold mb-2">WHO WE SERVE</h3>
             <p className="text-black mb-10 md:text-xl">Choose The Path That <br /> Matches Your Journey.</p>
         </div>
 
         {/* <div className="flex flex-col sm:flex-row justify-between gap-10"> */}
-        <div className="flex flex-wrap md:flex-col justify-center gap-10 sm:max-w-[80%] mx-auto">
-          <div className="flex flex-col w-full sm:w-[45%] min-w-[290px] md:min-w-[380px] max-w-md text-left">
-            <div className="relative h-64 rounded-xl overflow-hidden shadow-lg mb-6">
-              <Image
-                width={300}
-                height={450}
-                src="/serve-1.webp"
-                alt="Job Seekers, Students, Career Starters"
-                className="object-cover w-full h-full"
-              />
+        <div className="flex md:flex-2/3 flex-col p-6 sm:flex-row  justify-center w-auto gap-5 ">
+          <div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left">
+            <div className="relative h-64 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
+            <Image
+              fill
+              src="/serve-1.webp"
+              alt="Job Seekers, Students, Career Starters"
+              className="object-cover w-full h-full"
+                />
             </div>
 
             <h4 className="text-lg font-semibold mb-2">Grow Your Skills. Get Hired</h4>
@@ -57,15 +56,14 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className="flex flex-col w-full sm:w-[45%] min-w-[290px] md:min-w-[380px] max-w-md text-left">
-            <div className="relative h-64 rounded-xl overflow-hidden shadow-lg mb-6">
-              <Image
-                width={300}
-                height={450}
-                src="/serve-2.webp"
-                alt="Employers, Business Leaders, HR Teams"
-                className="object-cover w-full h-full"
-              />
+          <div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left">
+          <div className="relative h-64 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
+            <Image
+              fill
+              src="/serve-2.webp"
+              alt="Job Seekers, Students, Career Starters"
+              className="object-cover w-full h-full"
+                />
             </div>
 
             <h4 className="text-lg font-semibold mb-2">Train. Hire. Transform</h4>
