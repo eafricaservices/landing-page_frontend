@@ -1,59 +1,101 @@
+
 import Image from "next/image";
 import { Card } from "@/app/ui/Card";
+import { roboto_condensed } from "@/app/ui/fonts";
 
 export default function ServiceSection() {
   return (
-    <div className="flex flex-col max-w-[90%] mx-auto justify-center items-center">
-        <div>
-            <h1>
-            OUR SERVICES
-            </h1> 
-            <p>
-            E-Africa equips individuals with job-ready skills and helps organizations build better teams        
-            through training, consulting, and talent sourcing.
-            </p>
-        </div>
-        <Card className="w-full max-w-5xl mx-auto p-4 bg-transparent border-none shadow-none">
-      <div className="flex flex-col md:flex-row gap-4 mb-4">
-        <div className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden rounded-xl">
-          <Image
-            src="/service1.webp"
-            alt="Top Left Overlay"
-            fill
-            className="object-cover"
-          />
-          {/* <div className="absolute bottom-0 w-full backdrop-blur-md bg-white/30 text-black px-4 py-2 text-sm font-medium">
-            Top Left Overlay Text
-          </div> */}
-        </div>
+    <div className={`${roboto_condensed.className} flex flex-col max-w-[90%] md:max-w-[90%] mx-auto justify-center items-center space-y-10`}>
+      <div className="text-center max-w-full mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">OUR SERVICES</h1>
+        <p className="text-sm md:text-base text-black">
+          E-Africa equips individuals with job-ready skills and helps organizations build better teams        
+          through training, consulting, and talent sourcing.
+        </p>
+      </div>
 
-        <div className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden rounded-xl">
-          <Image
-            src="/service-2.webp"
-            alt="Top Right Overlay"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute bottom-0 w-full backdrop-blur-md bg-white/30 text-black px-4 py-2 text-sm font-medium">
-            Top Right Overlay Text
+      <div className="w-full relative">
+        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <ServiceCard image="/service1.webp" />
+            <ServiceCard
+              image="/service-2.webp"
+              title="Talent Pool & Placement"
+              description="Qualified individuals are added to a live talent pool where partner companies can recruit directly. Easy application via form profile + CV review, visibility to hiring partners"
+            />
           </div>
-        </div>
+          <WideServiceCard
+            image="/service-3.webp"
+            title="CX & Strategy Consulting"
+            description="Build a customer-centric company with expert-designed CX systems, playbooks, and support team coaching. Onboarding Systems, CSM Playbook Design and CX Coaching & Feedback Loops"
+          />
+        </Card>
       </div>
 
-      <div className="relative w-full aspect-[5/2] overflow-hidden rounded-xl">
-        <Image
-          src="/service-3.webp"
-          alt="Full Width Overlay"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute bottom-0 w-full backdrop-blur-md bg-white/30 text-black px-6 py-4 text-lg font-semibold">
-          Full Width Image Text
-        </div>
+      <div className="w-full relative">
+        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <ServiceCard
+              image="/service4.webp"
+              title="Consulting & Strategy"
+              description="Work with our experts to streamline your business with digital transformation, automation, and growth strategies. AI Task Automation, customer Success Optimization, process Mapping, IoT Efficiency Audits"
+            />
+            <ServiceCard
+              image="/service-5.webp"
+              title="Employer Branding & LinkedIn Strategy"
+              description="Attract better talent and improve your visibility with personalized employer branding and LinkedIn optimization. Company Page Optimization, job Marketing Campaigns, content Strategy & Visual Branding"
+            />
+          </div>
+          <WideServiceCard
+            image="/service-6.webp"
+            title="Career Coaching & Mentorship"
+            description="Pair learners with coaches or mentors to help them stay accountable, build confidence, and transition successfully into new roles. Personalized support, group coaching options, accountability system"
+          />
+        </Card>
       </div>
-    </Card>
 
+      <div className="w-full relative">
+        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <ServiceCard
+              image="/service-7.webp"
+              title="Training for Individuals"
+              description="Help individuals develop job-ready skills through hands-on, expert-led courses designed for the African market. Free & premium training options, mentorship & accountability partners, remote learning and community access"
+            />
+            <ServiceCard
+              image="/service-8.webp"
+              title="Talent Sourcing & Staffing"
+              description="Hire pre-vetted junior and mid-level professionals across Africa for remote, hybrid, or on-site roles. Talent from Nigeria, Ghana, Kenya, Cameroon, and beyond, cultural-fit and onboarding support included"
+            />
+          </div>
+        </Card>
+      </div>
     </div>
-    
+  );
+}
+
+function ServiceCard({ image, title, description }: { image: string; title?: string; description?: string }) {
+  return (
+    <div className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden rounded-xl">
+      <Image src={image} alt={title || "Service"} fill className="object-cover" />
+      {title && description && (
+        <div className="absolute bottom-0 w-full h-1/3 backdrop-blur-md bg-white/70 text-black px-3 py-3 text-xs sm:text-sm overflow-auto">
+          <h2 className="font-extrabold text-base sm:text-lg md:text-3xl mb-1">{title}</h2>
+          <p className=" font-extralight leading-snug md:text-xl">{description}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function WideServiceCard({ image, title, description }: { image: string; title: string; description: string }) {
+  return (
+    <div className="relative w-full aspect-[5/2] overflow-hidden rounded-xl">
+      <Image src={image} alt={title} fill className="object-cover" />
+      <div className="absolute bottom-0 w-full h-1/3 backdrop-blur-md bg-white/70 text-black px-4 py-4 text-xs sm:text-sm  overflow-auto">
+        <h2 className="font-bold text-base sm:text-lg md:text-2xl mb-2">{title}</h2>
+        <p className="leading-snug md:text-xl">{description}</p>
+      </div>
+    </div>
   );
 }
