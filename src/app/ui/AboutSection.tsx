@@ -22,16 +22,18 @@ const AboutSection = () => {
         </p>
         </div>        
       </div>
-      <div className="py-16 md:max-w-[90%] md:mx-auto md:mt-20 flex  flex-col sm:flex-row justify-between  ">
-        <div className='md:flex-1/2 text-center'>
+      <div className="py-16 md:max-w-[90%]  md:mx-auto md:mt-10 flex  flex-col" >
+        <div className='flex flex-col  items-start w-[100%]'>
+          <div className='flex flex-col sm:flex-row justify-between w-[100%]'>          
+          <div className='md:flex-1/7  text-center'>
             <h3 className="text-2xl md:text-3xl font-bold mb-2">WHO WE SERVE</h3>
             <p className="text-black mb-10 md:text-xl">Choose The Path That <br /> Matches Your Journey.</p>
         </div>
 
         {/* <div className="flex flex-col sm:flex-row justify-between gap-10"> */}
-        <div className="flex md:flex-2/3 flex-col p-6 sm:flex-row  justify-center w-auto gap-5 ">
+        <div className="flex md:flex-2/3  flex-col p-6 sm:flex-row  md:justify-items-start w-auto gap-5 ">
           <div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left">
-            <div className="relative h-64 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
+            <div className="relative  h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
             <Image
               fill
               src="/serve-1.webp"
@@ -39,7 +41,6 @@ const AboutSection = () => {
               className="object-cover w-full h-full"
                 />
             </div>
-
             <h4 className="text-lg font-semibold mb-2">Grow Your Skills. Get Hired</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
               <li>• Practical Skills Training</li>
@@ -52,19 +53,28 @@ const AboutSection = () => {
               <Link href="#" className="text-green-700 font-semibold text-sm underline underline-offset-2">
                 Join Our Talent Pool
               </Link>
-              <ArrowUpRight className="ml-2 text-green-600" size={20} />
+              <ArrowUpRight className="ml-2 text-green-600" size={20}/>
             </div>
           </div>
 
           <div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left">
-          <div className="relative h-64 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
+          <div className="relative h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
             <Image
               fill
               src="/serve-2.webp"
               alt="Job Seekers, Students, Career Starters"
-              className="object-cover w-full h-full"
-                />
+              className="object-cover w-full h-full" />
             </div>
+            {/* <div className="relative h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
+              <div className="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
+
+              <Image
+                fill
+                src="/serve-2.webp"
+                alt="Job Seekers, Students, Career Starters"
+                className="object-cover w-full h-full z-0"
+              />              
+            </div> */}
 
             <h4 className="text-lg font-semibold mb-2">Train. Hire. Transform</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
@@ -81,7 +91,8 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
-
+      </div>
+      </div>
       </div>
         </div>
       
