@@ -1,8 +1,25 @@
+
 'use client';
 
-import {  ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0 },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const AboutSection = () => {
   return (
@@ -14,25 +31,53 @@ const AboutSection = () => {
 
       <div className="bg-green-800 ">
         <div className='md:max-w-[80%] md:mx-auto px-7 text-white py-10 md:py-20 flex flex-col sm:flex-row  justify-between md:gap-13 md:px-15'>
-        <h3 className="text-xl font-bold mb-4 md:text-2xl ">E-AFRICA</h3>
-        <p className="text-base text-white md:text-2xl  leading-relaxed max-w-5xl">
-          E-Africa is a purpose-driven company empowering Africa’s workforce through training, talent development, and strategic consulting.
-          <br />
-          We equip individuals with in-demand skills and mentorship to grow their careers, while helping organizations across the continent build stronger teams through custom training, staffing support, and digital transformation solutions.
-        </p>
+         <motion.h3
+                    className="text-xl font-bold mb-4 md:text-2xl"
+                    variants={fadeLeft}
+                    initial="hidden"
+                    whileInView="visible"
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    E-AFRICA
+        </motion.h3>
+        <motion.p
+              className="text-base text-white md:text-2xl  leading-relaxed max-w-5xl"
+              variants={fadeRight}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.9, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              E-Africa is a purpose-driven company empowering Africa’s workforce through training, talent development, and strategic consulting.
+              <br />
+              We equip individuals with in-demand skills and mentorship to grow their careers, while helping organizations across the continent build stronger teams through custom training, staffing support, and digital transformation solutions.
+        </motion.p>
+
         </div>        
       </div>
       <div className="py-16 md:max-w-[90%]  md:mx-auto md:mt-10 flex  flex-col" >
         <div className='flex flex-col  items-start w-[100%]'>
           <div className='flex flex-col sm:flex-row justify-between w-[100%]'>          
-          <div className='md:flex-1/7  text-center'>
+          <motion.div className='md:flex-1/7  text-center'
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeLeft}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            viewport={{ once: true }}            
+            >
             <h3 className="text-2xl md:text-3xl font-bold mb-2">WHO WE SERVE</h3>
             <p className="text-black mb-10 md:text-xl">Choose The Path That <br /> Matches Your Journey.</p>
-        </div>
+        </motion.div>
 
-        {/* <div className="flex flex-col sm:flex-row justify-between gap-10"> */}
         <div className="flex md:flex-2/3  flex-col p-6 sm:flex-row  md:justify-items-start w-auto gap-5 ">
-          <div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left">
+          <motion.div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.9, delay: 0.3}}
+          viewport={{ once: true }}
+          >
             <div className="relative  h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
             <Image
               fill
@@ -55,26 +100,22 @@ const AboutSection = () => {
               </Link>
               <ArrowUpRight className="ml-2 text-green-600" size={20}/>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left">
+          <motion.div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 1.2, delay: 0.9 }}
+            viewport={{ once: true }}
+            >
           <div className="relative h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
             <Image
               fill
               src="/serve-2.webp"
               alt="Job Seekers, Students, Career Starters"
               className="object-cover w-full h-full" />
-            </div>
-            {/* <div className="relative h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
-              <div className="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
-
-              <Image
-                fill
-                src="/serve-2.webp"
-                alt="Job Seekers, Students, Career Starters"
-                className="object-cover w-full h-full z-0"
-              />              
-            </div> */}
+            </div>         
 
             <h4 className="text-lg font-semibold mb-2">Train. Hire. Transform</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
@@ -89,7 +130,7 @@ const AboutSection = () => {
               </Link>
               <ArrowUpRight className="ml-2 text-green-600" size={20} />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       </div>

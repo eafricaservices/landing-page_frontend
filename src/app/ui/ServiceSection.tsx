@@ -1,7 +1,24 @@
-
+ "use client"
 import Image from "next/image";
 import { Card } from "@/app/ui/Card";
 import { roboto_condensed } from "@/app/ui/fonts";
+import { motion } from "framer-motion";
+
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0 },
+};
+const fadeRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0 },
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
+
+
 
 export default function ServiceSection() {
   return (
@@ -17,8 +34,12 @@ export default function ServiceSection() {
       <div className="w-full relative">
         <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
           <div className="flex flex-col md:flex-row gap-4 mb-4">
-            <ServiceCard image="/service1.webp" />
+            <ServiceCard 
+            image="/service1.webp"
+            direction="left"
+             />
             <ServiceCard
+              direction="right"
               image="/service-2.webp"
               title="Talent Pool & Placement"
               description="Qualified individuals are added to a live talent pool where partner companies can recruit directly. Easy application via form profile + CV review, visibility to hiring partners"
@@ -36,11 +57,13 @@ export default function ServiceSection() {
         <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
           <div className="flex flex-col md:flex-row gap-4 mb-4">
             <ServiceCard
+              direction="left"
               image="/service4.webp"
               title="Consulting & Strategy"
               description="Work with our experts to streamline your business with digital transformation, automation, and growth strategies. AI Task Automation, customer Success Optimization, process Mapping, IoT Efficiency Audits"
             />
             <ServiceCard
+              direction="right"
               image="/service-5.webp"
               title="Employer Branding & LinkedIn Strategy"
               description="Attract better talent and improve your visibility with personalized employer branding and LinkedIn optimization. Company Page Optimization, job Marketing Campaigns, content Strategy & Visual Branding"
@@ -58,11 +81,13 @@ export default function ServiceSection() {
         <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
           <div className="flex flex-col md:flex-row gap-4 mb-4">
             <ServiceCard
+              direction="left"
               image="/service-7.webp"
               title="Training for Individuals"
               description="Help individuals develop job-ready skills through hands-on, expert-led courses designed for the African market. Free & premium training options, mentorship & accountability partners, remote learning and community access"
             />
             <ServiceCard
+              direction="right"
               image="/service-8.webp"
               title="Talent Sourcing & Staffing"
               description="Hire pre-vetted junior and mid-level professionals across Africa for remote, hybrid, or on-site roles. Talent from Nigeria, Ghana, Kenya, Cameroon, and beyond, cultural-fit and onboarding support included"
@@ -74,28 +99,48 @@ export default function ServiceSection() {
   );
 }
 
-function ServiceCard({ image, title, description }: { image: string; title?: string; description?: string }) {
+
+
+function ServiceCard({image,title, description, direction = "left", }: {image: string; title?: string; description?: string; direction?: "left" | "right";
+}) {
+  const variant = direction === "left" ? fadeLeft : fadeRight;
+
   return (
-    <div className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden rounded-xl">
+    <motion.div
+      className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden rounded-xl"
+      variants={variant}
+      initial="hidden"
+      whileInView="visible"
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
       <Image src={image} alt={title || "Service"} fill className="object-cover" />
       {title && description && (
-        <div className="absolute bottom-0 w-full h-1/3 backdrop-blur-md bg-white/70 text-black px-3 py-3 text-xs sm:text-sm overflow-auto">
+        <div className="flex flex-col absolute bottom-0 w-full h-1/2 md:h-1/3 backdrop-blur-md bg-white/70 justify-center  text-black px-3 py-3 text-xs sm:text-sm overflow-auto">
           <h2 className="font-extrabold text-base sm:text-lg md:text-3xl mb-1">{title}</h2>
-          <p className=" font-extralight leading-snug md:text-xl">{description}</p>
+          <p className="font-extralight leading-snug md:text-xl">{description}</p>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
 
+
 function WideServiceCard({ image, title, description }: { image: string; title: string; description: string }) {
   return (
-    <div className="relative w-full aspect-[5/2] overflow-hidden rounded-xl">
-      <Image src={image} alt={title} fill className="object-cover" />
-      <div className="absolute bottom-0 w-full h-1/3 backdrop-blur-md bg-white/70 text-black px-4 py-4 text-xs sm:text-sm  overflow-auto">
+    <motion.div className="relative w-full aspect-[5/2] overflow-hidden rounded-xl"
+      initial="hidden"
+      whileInView="visible"
+      variants={fadeUp}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      viewport={{ once: true }}
+    >
+      <Image src={image} alt={title} fill className="object-cover  h-76 " />
+      <div className=" flex flex-col absolute bottom-0 w-full h-2/3 md:h-1/3 backdrop-blur-md justify-center bg-white/70 text-black px-4 py-4 text-xs sm:text-sm  overflow-auto">
         <h2 className="font-bold text-base sm:text-lg md:text-2xl mb-2">{title}</h2>
         <p className="leading-snug md:text-xl">{description}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }
+

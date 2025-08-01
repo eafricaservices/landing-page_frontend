@@ -16,11 +16,19 @@ export default function Home(){
       <Header />
       <HeroSection/>
       <Stats/>
-      <AboutSection/>
+      <section id='about' className="min-h-screen pt-20">
+        <AboutSection/>
+      </section>
+      <section id='service' className="min-h-screen pt-20">
       <ServiceSection/>
+      </section>
       <FounderSection/>
-      <TrainingSection/>
-      <ContactSection/>
+      <section id='' className="min-h-screen pt-20">
+        <TrainingSection/>
+      </section>
+      <section id='contact' className="min-h-screen pt-20">
+        <ContactSection/>
+      </section>
 
 
     </div>
