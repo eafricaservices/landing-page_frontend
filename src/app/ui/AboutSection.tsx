@@ -26,7 +26,7 @@ const AboutSection = () => {
     <section className="w-full">
     <div className=''>
         <div className="text-center py-10 max-w-[80%] mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold">ABOUT US</h2>
+        <h2 className="text-3xl text-black md:text-4xl font-bold">ABOUT US</h2>
         </div>
 
       <div className="bg-green-800 ">
@@ -66,11 +66,11 @@ const AboutSection = () => {
             transition={{ duration: 0.9, delay: 0.3 }}
             viewport={{ once: true }}            
             >
-            <h3 className="text-2xl md:text-3xl font-bold mb-2">WHO WE SERVE</h3>
+            <h3 className="text-2xl text-black md:text-3xl font-bold mb-2">WHO WE SERVE</h3>
             <p className="text-black mb-10 md:text-xl">Choose The Path That <br /> Matches Your Journey.</p>
         </motion.div>
 
-        <div className="flex md:flex-2/3  flex-col p-6 sm:flex-row  md:justify-items-start w-auto gap-5 ">
+        <div className="flex md:flex-2/3  flex-col p-6 sm:flex-row  md:justify-items-start w-auto gap-9 ">
           <motion.div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left"
           variants={fadeUp}
           initial="hidden"
@@ -78,15 +78,15 @@ const AboutSection = () => {
           transition={{ duration: 0.9, delay: 0.3}}
           viewport={{ once: true }}
           >
-            <div className="relative  h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
+            <div className="relative  h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6 hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:scale-110 transition-all duration-300">
             <Image
               fill
               src="/serve-1.webp"
               alt="Job Seekers, Students, Career Starters"
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full   "
                 />
             </div>
-            <h4 className="text-lg font-semibold mb-2">Grow Your Skills. Get Hired</h4>
+            <h4 className="text-lg text-black font-semibold mb-2">Grow Your Skills. Get Hired</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
               <li>• Practical Skills Training</li>
               <li>• Join Our Talent Pool</li>
@@ -109,7 +109,9 @@ const AboutSection = () => {
             transition={{ duration: 1.2, delay: 0.9 }}
             viewport={{ once: true }}
             >
-          <div className="relative h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6">
+          <div className="relative h-94 min-w-50 rounded-xl overflow-hidden shadow-lg mb-6
+          hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:scale-110 transition-all duration-300
+           ">
             <Image
               fill
               src="/serve-2.webp"
@@ -117,7 +119,7 @@ const AboutSection = () => {
               className="object-cover w-full h-full" />
             </div>         
 
-            <h4 className="text-lg font-semibold mb-2">Train. Hire. Transform</h4>
+            <h4 className="text-lg text-black font-semibold mb-2">Train. Hire. Transform</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
               <li>• Pre-Vetted Talent</li>
               <li>• Strategy & Consulting</li>

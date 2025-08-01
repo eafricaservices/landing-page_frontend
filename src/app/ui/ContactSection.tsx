@@ -11,7 +11,7 @@ export default function ContactSection() {
   return (
     <footer className="w-full bg-white py-10 px-4">
       <div className="text-center mb-10">
-        <h2 className="text-2xl md:text-4xl font-bold mb-2">HAVE QUESTIONS?</h2>
+        <h2 className="text-2xl text-black md:text-4xl font-bold mb-2">HAVE QUESTIONS?</h2>
         <p className="text-md md:text-lg font-medium text-gray-700">
           FILL THE FORM BELOW AND WE’LL GET BACK TO YOU
         </p>

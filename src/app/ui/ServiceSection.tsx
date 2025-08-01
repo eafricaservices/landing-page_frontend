@@ -1,30 +1,33 @@
  "use client"
+import React from "react";
 import Image from "next/image";
 import { Card } from "@/app/ui/Card";
 import { roboto_condensed } from "@/app/ui/fonts";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 
-const fadeLeft = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0 },
-};
-const fadeRight = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0 },
-};
+
 const fadeUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
 };
+const fadeLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  };
 
+  const fadeRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  };
 
 
 export default function ServiceSection() {
   return (
     <div className={`${roboto_condensed.className} flex flex-col max-w-[90%] md:max-w-[90%] mx-auto justify-center items-center space-y-10`}>
       <div className="text-center max-w-full mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">OUR SERVICES</h1>
+        <h1 className="text-3xl text-black md:text-4xl font-bold mb-4">OUR SERVICES</h1>
         <p className="text-sm md:text-base text-black">
           E-Africa equips individuals with job-ready skills and helps organizations build better teams        
           through training, consulting, and talent sourcing.
@@ -33,7 +36,7 @@ export default function ServiceSection() {
 
       <div className="w-full relative">
         <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
-          <div className="flex flex-col md:flex-row gap-4 mb-4">
+          <div className="flex flex-col md:flex-row gap-8 mb-4">
             <ServiceCard 
             image="/service1.webp"
             direction="left"
@@ -55,7 +58,7 @@ export default function ServiceSection() {
 
       <div className="w-full relative">
         <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
-          <div className="flex flex-col md:flex-row gap-4 mb-4">
+          <div className="flex flex-col md:flex-row gap-8 mb-4">
             <ServiceCard
               direction="left"
               image="/service4.webp"
@@ -79,7 +82,7 @@ export default function ServiceSection() {
 
       <div className="w-full relative">
         <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
-          <div className="flex flex-col md:flex-row gap-4 mb-4">
+          <div className="flex flex-col md:flex-row gap-8 mb-4">
             <ServiceCard
               direction="left"
               image="/service-7.webp"
@@ -99,48 +102,108 @@ export default function ServiceSection() {
   );
 }
 
-
-
-function ServiceCard({image,title, description, direction = "left", }: {image: string; title?: string; description?: string; direction?: "left" | "right";
+function ServiceCard({
+  image,
+  title,
+  description,
+  direction = 'left',
+}: {
+  image: string;
+  title?: string;
+  description?: string;
+  direction?: 'left' | 'right';
 }) {
-  const variant = direction === "left" ? fadeLeft : fadeRight;
+  
+
+  const variant = direction === 'left' ? fadeLeft : fadeRight;
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
       className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden rounded-xl"
       variants={variant}
       initial="hidden"
+      animate={{ scale: hovered ? 1.05 : 1 }} 
+      transition={{ duration: 0.1, ease: 'easeOut' }}
       whileInView="visible"
-      transition={{ duration: 0.6 }}
       viewport={{ once: true }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
     >
-      <Image src={image} alt={title || "Service"} fill className="object-cover" />
+      <div
+       className="absolute inset-0 z-0">
+      <Image src={image} alt={title || 'Service'} fill className="object-cover" />
+    </div>
       {title && description && (
-        <div className="flex flex-col absolute bottom-0 w-full h-1/2 md:h-1/3 backdrop-blur-md bg-white/70 justify-center  text-black px-3 py-3 text-xs sm:text-sm overflow-auto">
-          <h2 className="font-extrabold text-base sm:text-lg md:text-3xl mb-1">{title}</h2>
-          <p className="font-extralight leading-snug md:text-xl">{description}</p>
-        </div>
+        <motion.div
+          animate={{
+            y: hovered ? '0%' : '55%',
+          }}
+          transition={{ type: 'spring', stiffness: 600, damping: 52 }}
+          className="absolute bottom-0 w-full backdrop-blur-md bg-white/70 px-4 py-6"
+        >
+          <div className="flex flex-col justify-center items-start space-y-2">
+            <h2 className="font-bold text-base sm:text-lg md:text-2xl">{title}</h2>
+            <p className="text-sm md:text-lg">{description}</p>
+          </div>
+        </motion.div>
       )}
     </motion.div>
   );
 }
 
 
-function WideServiceCard({ image, title, description }: { image: string; title: string; description: string }) {
+
+function WideServiceCard({
+  image,
+  title,
+  description,
+}: {
+  image: string;
+  title: string;
+  description: string;
+}) {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <motion.div className="relative w-full aspect-[5/2] overflow-hidden rounded-xl"
+    <motion.div
+      className="relative w-full aspect-[5/2] overflow-hidden rounded-xl group"
       initial="hidden"
       whileInView="visible"
+      animate={{ scale: hovered ? 1.05 : 1 }} 
+      transition={{ duration: 0.1, ease: 'easeOut' }}
       variants={fadeUp}
-      transition={{ duration: 0.6, delay: 0.3 }}
       viewport={{ once: true }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
-      <Image src={image} alt={title} fill className="object-cover  h-76 " />
-      <div className=" flex flex-col absolute bottom-0 w-full h-2/3 md:h-1/3 backdrop-blur-md justify-center bg-white/70 text-black px-4 py-4 text-xs sm:text-sm  overflow-auto">
-        <h2 className="font-bold text-base sm:text-lg md:text-2xl mb-2">{title}</h2>
-        <p className="leading-snug md:text-xl">{description}</p>
+      <div 
+      className="absolute inset-0 z-0"      
+      >
+        <Image src={image} alt={title || 'Service'} fill className="object-cover" />
       </div>
+      <motion.div
+        animate={{ y: hovered ? '0%' : '55%' }}
+        transition={{ type: 'spring', stiffness: 600, damping: 52 }}
+        className="absolute bottom-0 w-full backdrop-blur-md bg-white/70 px-4 py-6"
+      >
+        <div className="flex flex-col justify-center items-start space-y-2">
+          <div className="h-[60px] flex items-center">
+            <h2 className="font-bold text-base sm:text-lg md:text-2xl">{title}</h2>
+          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: hovered ? 1 : 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-sm md:text-lg"
+          >
+            {description}
+          </motion.p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
+
+
 

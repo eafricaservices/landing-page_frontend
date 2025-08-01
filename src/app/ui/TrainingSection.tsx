@@ -6,7 +6,7 @@ import Image from 'next/image'
 const TrainingSection = () => {
   return (
     <div className='md:max-w-[90%] lg:max-w-[8  0%] mx-auto md:mt-40'>
-        <h1 className=' md:mb-8 text-lg md:text-5xl font-extrabold text-center'>
+        <h1 className='text-black md:mb-8 text-lg md:text-5xl font-extrabold text-center'>
             TRAINNINGS
         </h1>
         <div className=' w-full px-5 md:px-20 border-4 border-gray-300 mt-5 flex flex-col md:flex-row items-center  p-6 bg-white shadow-lg rounded-lg space-y-4 md:space-y-0 md:space-x-9 md:min-h-[400px]'>
