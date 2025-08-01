@@ -25,7 +25,7 @@ const fadeLeft = {
 
 export default function ServiceSection() {
   return (
-    <div className={`${roboto_condensed.className} flex flex-col max-w-[90%] md:max-w-[90%] mx-auto justify-center items-center space-y-10`}>
+    <div className={`${roboto_condensed.className} flex flex-col max-w-[90%] md:max-w-[90%] mb-7 mx-auto justify-center items-center space-y-10`}>
       <div className="text-center max-w-full mb-6">
         <h1 className="text-3xl text-black md:text-4xl font-bold mb-4">OUR SERVICES</h1>
         <p className="text-sm md:text-base text-black">
@@ -35,8 +35,8 @@ export default function ServiceSection() {
       </div>
 
       <div className="w-full relative">
-        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
-          <div className="flex flex-col md:flex-row gap-8 mb-4">
+        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-[0_0_10px_rgba(0,0,0,0.2)]">
+          <div className="flex flex-col md:flex-row gap-8 mb-12 ">
             <ServiceCard 
             image="/service1.webp"
             direction="left"
@@ -57,8 +57,8 @@ export default function ServiceSection() {
       </div>
 
       <div className="w-full relative">
-        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
-          <div className="flex flex-col md:flex-row gap-8 mb-4">
+        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none  shadow-[0_0_10px_rgba(0,0,0,0.2)]">
+          <div className="flex flex-col md:flex-row gap-8 mb-12">
             <ServiceCard
               direction="left"
               image="/service4.webp"
@@ -81,8 +81,8 @@ export default function ServiceSection() {
       </div>
 
       <div className="w-full relative">
-        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-none">
-          <div className="flex flex-col md:flex-row gap-8 mb-4">
+        <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-[0_0_10px_rgba(0,0,0,0.2)]">
+          <div className="flex flex-col md:flex-row gap-8 mb-8">
             <ServiceCard
               direction="left"
               image="/service-7.webp"
@@ -123,13 +123,14 @@ function ServiceCard({
       className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden rounded-xl"
       variants={variant}
       initial="hidden"
-      animate={{ scale: hovered ? 1.05 : 1 }} 
-      transition={{ duration: 0.1, ease: 'easeOut' }}
+      animate={{ scale: hovered ? 1.05 : 1, transition: { duration: 0.1, ease: 'easeOut' } }} 
+      transition={{ duration: 0.9}}
       whileInView="visible"
       viewport={{ once: true }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
     >
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
       <div
        className="absolute inset-0 z-0">
       <Image src={image} alt={title || 'Service'} fill className="object-cover" />
@@ -170,13 +171,14 @@ function WideServiceCard({
       className="relative w-full aspect-[5/2] overflow-hidden rounded-xl group"
       initial="hidden"
       whileInView="visible"
-      animate={{ scale: hovered ? 1.05 : 1 }} 
-      transition={{ duration: 0.1, ease: 'easeOut' }}
+      animate={{ scale: hovered ? 1.05 : 1, transition: { duration: 0.1, ease: 'easeOut' } }} 
+      transition={{ duration: 0.9}}
       variants={fadeUp}
       viewport={{ once: true }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
       <div 
       className="absolute inset-0 z-0"      
       >
