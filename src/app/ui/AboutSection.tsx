@@ -86,7 +86,8 @@ const AboutSection = () => {
               className="object-cover w-full h-full   "
                 />
             </div>
-            <h4 className="text-lg text-black font-semibold mb-2">Grow Your Skills. Get Hired</h4>
+            <div className='flex flex-col items-center'>
+              <h4 className="text-lg text-black font-semibold mb-2">Grow Your Skills. Get Hired</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
               <li>• Practical Skills Training</li>
               <li>• Join Our Talent Pool</li>
@@ -94,12 +95,14 @@ const AboutSection = () => {
               <li>• Mentorship & Career Coaching</li>
               <li>• LinkedIn & CV Optimization</li>
             </ul>
-            <div className="flex flex-row">
+            <div className="sm:mr-15 flex flex-row ">
               <Link href="#" className="text-green-700 font-semibold text-sm underline underline-offset-2">
                 Join Our Talent Pool
               </Link>
               <ArrowUpRight className="ml-2 text-green-600" size={20}/>
             </div>
+            </div>
+            
           </motion.div>
 
           <motion.div className="flex flex-col w-full sm:w-[45%] min-w-[200px] md:min-w-[200px] max-w-md text-left"
@@ -118,7 +121,7 @@ const AboutSection = () => {
               alt="Job Seekers, Students, Career Starters"
               className="object-cover w-full h-full" />
             </div>         
-
+          <div className='flex flex-col items-center'>
             <h4 className="text-lg text-black font-semibold mb-2">Train. Hire. Transform</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
               <li>• Pre-Vetted Talent</li>
@@ -126,11 +129,12 @@ const AboutSection = () => {
               <li>• Employer Branding</li>
               <li>• Book A Discovery Call</li>
             </ul>
-            <div className="flex flex-row">
+            <div className=" sm:mr-15 flex flex-row">
               <Link href="#" className="text-green-700 font-semibold text-sm underline underline-offset-2">
                 Work With Us
               </Link>
               <ArrowUpRight className="ml-2 text-green-600" size={20} />
+            </div>
             </div>
           </motion.div>
         </div>
