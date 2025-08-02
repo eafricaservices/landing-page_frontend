@@ -86,7 +86,7 @@ const AboutSection = () => {
               className="object-cover w-full h-full   "
                 />
             </div>
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-start sm:items-center'>
               <h4 className="text-lg text-black font-semibold mb-2">Grow Your Skills. Get Hired</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
               <li>• Practical Skills Training</li>
@@ -121,7 +121,7 @@ const AboutSection = () => {
               alt="Job Seekers, Students, Career Starters"
               className="object-cover w-full h-full" />
             </div>         
-          <div className='flex flex-col items-center'>
+          <div className='flex flex-col items-start sm:items-center'>
             <h4 className="text-lg text-black font-semibold mb-2">Train. Hire. Transform</h4>
             <ul className="text-sm text-black space-y-1 mb-4">
               <li>• Pre-Vetted Talent</li>
