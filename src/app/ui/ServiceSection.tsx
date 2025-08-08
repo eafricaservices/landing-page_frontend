@@ -85,7 +85,7 @@ export default function ServiceSection() {
         </Card>
       </div>
 
-      <div className="w-full relative">
+      <div className="w-full relative text-black">
         <Card className="w-full max-w-full mx-auto p-4 bg-transparent border-none shadow-[0_0_10px_rgba(0,0,0,0.2)]">
           <div className="flex flex-col md:flex-row gap-8 mb-8">
             <ServiceCard
@@ -126,7 +126,7 @@ function ServiceCard({
 
   return (
     <motion.div
-      className="relative w-full md:w-1/2 aspect-[4/3] h-[335px] sm:h-[100%] overflow-hidden rounded-xl"
+      className="relative text-black w-full md:w-1/2 aspect-[4/3] h-[335px] sm:h-[100%] overflow-hidden rounded-xl"
       variants={variant}
       initial="hidden"
       animate={{
@@ -181,27 +181,6 @@ function ServiceCard({
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function WideServiceCard({
   image,
   title,
@@ -216,7 +195,7 @@ function WideServiceCard({
 
   return (
     <motion.div
-      className="relative w-full aspect-[5/2] h-[335px] sm:h-[100%] overflow-hidden rounded-xl"
+      className="relative text-black w-full aspect-[5/2] h-[335px] sm:h-[100%] overflow-hidden rounded-xl"
       variants={fadeUp}
       initial="hidden"
       animate={{
@@ -257,11 +236,11 @@ function WideServiceCard({
               transition={{ type: "spring", stiffness: 600, damping: 52 }}
               className="absolute bottom-0 w-full backdrop-blur-md bg-white/70 px-4 py-6"
             >
-              <div className="flex flex-col justify-center items-start space-y-4">
-                <h2 className="font-bold text-base sm:text-lg md:text-2xl">
+              <div className="flex flex-col text-black justify-center items-start space-y-4">
+                <h2 className="font-bold text-black text-base sm:text-lg md:text-2xl">
                   {title}
                 </h2>
-                <p className="text-sm md:text-lg">{description}</p>
+                <p className="text-sm text-black md:text-lg">{description}</p>
               </div>
             </motion.div>
           )}
