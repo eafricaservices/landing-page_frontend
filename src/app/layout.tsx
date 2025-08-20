@@ -18,6 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+       <head>
+        <link rel="preload" href="/success.webp" as="image" />
+      </head>
       <body
         className={`${poppins.className} antialiased`}
       >
