@@ -1,19 +1,18 @@
 import React from 'react'
-import Header from "../ui/Header";
 import HeroSect from "../ui/companiesComponents/HeroSect";
-// import MissionSection from "";
-// import ValuesSection from "";
-// import CallToAction from "";
+import WhyEafricaList from '../ui/companiesComponents/WhyEafricaList';
+import WhyEafricaCard from '../ui/companiesComponents/WhyEafricaCard';
+import DiscoveryForm from '../ui/companiesComponents/DiscoveryForm';
+
 
 
 const page = () => {
   return (
      <main className="min-h-screen bg-white">
-      <Header />     
       <HeroSect />
-      {/* <MissionSection />
-      <ValuesSection />
-      <CallToAction /> */}
+      <WhyEafricaList />
+      <WhyEafricaCard />
+      <DiscoveryForm />
     </main>
   )
 }

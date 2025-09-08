@@ -40,3 +40,37 @@ export const stats = [
     { value: "85%", label: "Placement Success Rate" },
     { value: "100%", label: "Certified in CX, IoT & PM" }
   ];
+
+
+
+export const trustBullets = [
+"1,000+ Trained Across Africa",
+"Trusted By 20+ Companies",
+"Proven Results In Sales, CX, And Operational Efficiency",
+"Vetted, Job-Ready Talent Pool",
+"Led By Industry Professionals With Real-World Experience",
+];
+
+
+export const serviceCards = [
+    {
+    title: "Workforce Training & Development",
+    text: "Customized Soft + Technical Training For Modern Teams.",
+    img: "/trust1.webp",
+    },
+    {
+    title: "Talent Sourcing & Staffing",
+    text: "Hire Pre-Vetted Junior–Mid Professionals From Our Pool.",
+    img: "/trust2.webp",
+    },
+    {
+    title: "Consulting & Strategy",
+    text: "CX Design, AI Task Automation, And Digital Transformation",
+    img: "/trust3.webp",
+    },
+    {
+    title: "Employer Branding Services",
+    text: "Optimize Your Presence On LinkedIn And Attract Talent.",
+    img: "/trust4.webp",
+    },
+];

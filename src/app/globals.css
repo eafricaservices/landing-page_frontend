@@ -25,3 +25,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
 }
+@layer components {
+  .card-v-top {
+    clip-path: polygon(0 0,
+        50% 40%,
+        100% 0,
+        100% 100%,
+        0 100%);
+  }
+}
