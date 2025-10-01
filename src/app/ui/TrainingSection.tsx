@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from './Button'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const TrainingSection = () => {
   return (
@@ -14,12 +15,15 @@ const TrainingSection = () => {
             <p className=' text-center font-[montaga] md:text-[2.0rem]  text-[#13672B] mb-4'>
                 Register now for our upcoming training session to unlock new career opportunities, enhance your skills, connect with top employers, and gain industry insights.
             </p>
+            <Link href="/individuals" className='w-full flex justify-center'>
             <Button 
               size="lg" 
               className="bg-green-700 hover:bg-green-600 text-white px-8 py-4 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
               Register             
             <ArrowRight className="ml-2" size={30} />
         </Button>
+            </Link>
+
 
         </div>
        

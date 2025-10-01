@@ -108,13 +108,13 @@ const router = useRouter();
       };
 
       const placeholderClass =
-    'placeholder:text-lg md:placeholder:text-xl placeholder:font-extrabold placeholder:tracking-wide placeholder:uppercase placeholder:text-black';
+    'placeholder:text-md   placeholder:uppercase placeholder:text-gray-600';
 
 
   return (
 
-    <div className=" ">
-      <div className="mb-6 md:mb-15">
+    <div className="  ">
+      <div className="mb-6 md:mb-10">
        <h2 className="text-2xl md:text-3xl text-black font-bold text-center mb-5 md:mb-7">Trainings</h2>
       <p className="text-center text-sm md:text-xl text-black">
         Ready To Grow Your Skills? Fill Out This Form To Join Our Next Training Cycle.
@@ -124,7 +124,7 @@ const router = useRouter();
 
       <form
       onSubmit={handleSubmit}
-      className="max-w-4xl mx-auto p-6  rounded-lg shadow-xl space-y-4 "
+      className="max-w-4xl mx-auto p-6 mt-10 py-10 rounded-lg shadow-[0_0_10px_rgba(0,0,0,0.2)] space-y-4 bg-white"
     >
      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-7">
@@ -136,7 +136,7 @@ const router = useRouter();
             placeholder="Full Name"
             value={formData.fullName}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border-1 border-gray-600 rounded ${placeholderClass}`}
+            className={`w-full p-2 h-10 md:h-15 border border-gray-900 rounded ${placeholderClass}`}
           />
           {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName}</p>}
         </div>
@@ -149,7 +149,7 @@ const router = useRouter();
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border-1 border-gray-600  rounded ${placeholderClass}`}
+            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded ${placeholderClass}`}
           />
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         </div>
@@ -161,7 +161,7 @@ const router = useRouter();
             placeholder="Phone Number"
             value={formData.phone}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border-1 border-gray-600  rounded ${placeholderClass}`}
+            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded ${placeholderClass}`}
           />
           {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
         </div>
@@ -185,7 +185,7 @@ const router = useRouter();
             placeholder="Age"
             value={formData.age}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border-1 border-gray-600  rounded ${placeholderClass}` }
+            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded ${placeholderClass}` }
           />
           {errors.age && <p className="text-red-500 text-sm">{errors.age}</p>}
         </div>
@@ -195,8 +195,8 @@ const router = useRouter();
             name="preferredTraining"
             value={formData.preferredTraining}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border-1 border-gray-600  rounded text-black md:text-xl ${
-            formData.preferredTraining === "" ? "font-extrabold" : "font-normal"
+            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded text-gray-600 md:text-md ${
+            formData.preferredTraining === "" ? "uppercase" : "font-normal"
           } ${placeholderClass}` }
           >
             <option value="" disabled>
@@ -229,8 +229,8 @@ const router = useRouter();
             name="referral"
             value={formData.referral}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border-1 border-gray-600  rounded text-black md:text-xl ${
-            formData.preferredTraining === "" ? "font-extrabold" : "font-normal"
+            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded text-gray-600 md:text-md ${
+            formData.preferredTraining === "" ? "uppercase" : "font-normal"
           } ${placeholderClass}` }
           >
             <option value="">How Did You Hear About Us</option>
@@ -251,7 +251,7 @@ const router = useRouter();
             placeholder="Why Do You Want To Join?"
             value={formData.reason}
             onChange={handleChange}
-            className={`w-full p-2 border-1 border-gray-600  rounded ${placeholderClass}` }
+            className={`w-full p-2 border border-gray-900  rounded ${placeholderClass}` }
             rows={4}
           />
           {errors.reason && <p className="text-red-500 text-sm">{errors.reason}</p>}
@@ -262,7 +262,7 @@ const router = useRouter();
         <button
           type="submit"
           disabled={submitting}
-          className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
+          className="px-6 py-2 bg-green-600 text-xl uppercase text-white rounded hover:bg-green-700 disabled:opacity-50"
         >
           {submitting ? "Submitting..." : "Submit"}
         </button>

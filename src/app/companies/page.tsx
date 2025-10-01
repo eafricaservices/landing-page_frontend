@@ -12,7 +12,9 @@ const page = () => {
       <HeroSect />
       <WhyEafricaList />
       <WhyEafricaCard />
-      <DiscoveryForm />
+      <section id='discovery' className="min-h-screen pt-30">
+        <DiscoveryForm />
+      </section>
     </main>
   )
 }

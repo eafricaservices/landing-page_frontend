@@ -1,6 +1,7 @@
 import React from 'react';
 import TrainingForm from '@/app/ui/individuals/TrainingForm';
 
+
 const page = () => {
   return (
     <div>

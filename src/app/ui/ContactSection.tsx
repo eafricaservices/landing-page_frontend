@@ -8,7 +8,7 @@ import ContactForm from "./ContactForm";
 
 export default function ContactSection() {
   return (
-    <footer className="w-full bg-white py-10 px-4">
+    <div className="w-full bg-white py-10 px-4">
       <div className="text-center mb-10">
         <h2 className="text-2xl text-black md:text-4xl font-bold mb-2">HAVE QUESTIONS?</h2>
         <p className="text-md md:text-lg font-medium text-gray-700">
@@ -55,7 +55,7 @@ export default function ContactSection() {
           <ContactForm />
         </div>
           <div className=" flex flex-col sm:hidden w-full  md:pr-6">
-          <div className="flex flex-col items-start  text-center md:text-left">
+          <div className="flex flex-col items-center  text-center md:text-left">
             <Image
               src="/E-africa.png" 
               alt="E-AFRICA Logo"
@@ -73,9 +73,11 @@ export default function ContactSection() {
               <FaYoutube />
             </div>
 
-            <div className="flex flex-col text-sm text-gray-800">
+            <div className="flex flex-col text-sm  text-gray-800">
               <div className="flex flex-col items-start gap-2 mb-7">
+                <div className="flex flex-col w-full items-start">
                 <p  className="text-green-700 md:text-xl font-bold"> Email</p>
+                </div>
                 <div>
                   <span className="flex flex-row items-center gap-2">
                     <MdEmail />
@@ -86,7 +88,9 @@ export default function ContactSection() {
               </div>
 
                <div className="flex flex-col items-start gap-2 mb-7">
+                <div className="flex flex-col items-start w-full">
                 <p  className="text-green-700 md:text-xl font-bold"> Phone Number</p>
+                </div>
                 <div>
                   <span className="flex flex-row items-center gap-2">
                     <MdPhone />
@@ -94,10 +98,12 @@ export default function ContactSection() {
                   </span>
                 </div>  
               </div>
-               <div className="flex flex-col items-start gap-2 mb-7">
-                <p  className="text-green-700 md:text-xl font-bold"> Location</p>
+               <div className="flex flex-col items-center gap-2 mb-7">
+                <div className="flex w-full flex-col items-start">
+                <p  className="text-green-700  md:text-xl font-bold"> Location</p>
+                </div>
                 <div>
-                  <span className="flex flex-row items-center gap-2">
+                  <span className="flex flex-row items-left gap-2">
                     <MdLocationOn /> 
                     <p className="break-words whitespace-normal w-full">794 Macallister St, San Francisco, 94102</p> 
                   </span>
@@ -107,6 +113,6 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }

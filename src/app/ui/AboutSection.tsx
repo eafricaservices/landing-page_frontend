@@ -88,15 +88,15 @@ const AboutSection = () => {
             </div>
             <div className='flex flex-col items-start sm:items-center'>
               <h4 className="text-lg text-black font-semibold mb-2">Grow Your Skills. Get Hired</h4>
-            <ul className="text-sm text-black space-y-1 mb-4">
-              <li>• Practical Skills Training</li>
-              <li>• Join Our Talent Pool</li>
-              <li>• Job & Internship Access</li>
-              <li>• Mentorship & Career Coaching</li>
-              <li>• LinkedIn & CV Optimization</li>
+            <ul className=" grid grid-cols-1 md:grid-cols-2 w-full mt-7 text-sm text-black space-y-1 mb-4">
+              <li>Practical Skills Training</li>
+              <li>Join Our Talent Pool</li>
+              <li>Job & Internship Access</li>
+              <li>Mentorship & Career Coaching</li>
+              <li>LinkedIn & CV Optimization</li>
             </ul>
             <div className="sm:mr-15 flex flex-row ">
-              <Link href="#" className="text-green-700 font-semibold text-sm underline underline-offset-2">
+              <Link href="/talent-pool" className="text-green-700 font-semibold text-sm underline underline-offset-2">
                 Join Our Talent Pool
               </Link>
               <ArrowUpRight className="ml-2 text-green-600" size={20}/>
@@ -121,16 +121,16 @@ const AboutSection = () => {
               alt="Job Seekers, Students, Career Starters"
               className="object-cover w-full h-full" />
             </div>         
-          <div className='flex flex-col items-start sm:items-center'>
+          <div className='flex flex-col items-start  sm:items-center'>
             <h4 className="text-lg text-black font-semibold mb-2">Train. Hire. Transform</h4>
-            <ul className="text-sm text-black space-y-1 mb-4">
-              <li>• Pre-Vetted Talent</li>
-              <li>• Strategy & Consulting</li>
-              <li>• Employer Branding</li>
-              <li>• Book A Discovery Call</li>
+            <ul className=" grid grid-cols-1 md:grid-cols-2 w-full mt-7 text-sm text-black space-y-1 mb-4">
+              <li>Pre-Vetted Talent</li>
+              <li>Strategy & Consulting</li>
+              <li>Employer Branding</li>
+              <li>Book A Discovery Call</li>
             </ul>
             <div className=" sm:mr-15 flex flex-row">
-              <Link href="#" className="text-green-700 font-semibold text-sm underline underline-offset-2">
+              <Link href="/companies/#discovery" className="text-green-700 font-semibold text-sm underline underline-offset-2">
                 Work With Us
               </Link>
               <ArrowUpRight className="ml-2 text-green-600" size={20} />

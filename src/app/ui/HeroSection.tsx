@@ -5,6 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Button } from './Button';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const HeroSection = () => {
   return (
@@ -17,7 +18,7 @@ const HeroSection = () => {
         priority
       />
 
-      <div className="absolute inset-0 z-10 flex items-end justify-start p-6 sm:p-10 md:p-16 md:px-50 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+      <div className="absolute inset-0 z-10 flex items-end justify-start p-6 sm:p-10 md:p-16 md:px-50 ">
         <div className="max-w-7xl space-y-6 text-white">
           <motion.h1
             initial={{ y: -100, opacity: 0 }}
@@ -43,9 +44,11 @@ const HeroSection = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.7 }}
             >
+              <Link href="/individuals">
               <Button className="bg-green-700 hover:bg-green-600 text-white px-15 py-9 text-lg sm:text-xl font-semibold rounded-lg shadow-lg transition-all duration-300">
                 For Individuals
               </Button>
+              </Link>
             </motion.div>
 
             <motion.div
@@ -53,9 +56,12 @@ const HeroSection = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.7 }}
             >
+              <Link href="/companies"> 
               <Button className="border-2 border-green-700 hover:bg-green-700 text-white px-15 py-9 text-lg sm:text-xl font-semibold rounded-lg shadow-lg transition-all duration-300">
                 For Companies
               </Button>
+              </Link>
+
             </motion.div>
           </div>
         </div>

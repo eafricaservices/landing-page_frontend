@@ -8,7 +8,7 @@ import TrainingSection from './ui/TrainingSection';
 import ContactSection from './ui/ContactSection';
 import CommunityText from './ui/CommunityText';
 import TestimonialSlider from './ui/TestimonialSlider';
-import Foot from './ui/Foot';
+import Footer from './ui/Footer';
 
 
 
@@ -20,21 +20,19 @@ export default function Home(){
       <section id='about' className="min-h-screen pt-20">
         <AboutSection/>
       </section>
-      <section id='service' className="min-h-screen pt-20">
+      <section id='service' className="min-h-screen pt-35">
       <ServiceSection/>
       </section>
       <FounderSection/>
       <section id='' className="min-h-screen pt-20">
         <TrainingSection/>
       </section>
-      <section id='contact' className="min-h-screen pt-20">
-        <ContactSection/>
+      <section id='contact' className=" pt-30">
+        <ContactSection/>        
+      </section>
         <CommunityText  />
         <TestimonialSlider/>
-        <Foot />
-      </section>
-
-
+        <Footer />
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { trustBullets } from '@/app/lib/definition';
 
 const WhyEafricaList = () => {
   return (
-   <section className=" border-y mt-7 md:mt-14 bg-[#D9D9D9]">
+   <section className=" border-y mt-2 bg-[#D9D9D9]">
         <div className="mx-auto max-w-screen-xl px-4 md:px-6">
             <div className="py-6 md:py-14">
                 <h2 className="text-lg md:text-3xl font-semibold uppercase tracking-wide text-neutral-800">

@@ -102,7 +102,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form className="w-full space-y-6" onSubmit={handleSubmit} noValidate>
+    <form className="w-full flex flex-col space-y-6" onSubmit={handleSubmit} noValidate>
       <div>
         <input
           type="text"
@@ -166,7 +166,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className={`border border-green-700 rounded-xl text-green-700 px-20 py-6 font-semibold 
+        className={`w-60 border border-green-700 rounded-xl self-center md:self-start  text-green-700 px-20 py-6 font-semibold 
           hover:bg-green-700 hover:text-white transition-all duration-300
           ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
       >

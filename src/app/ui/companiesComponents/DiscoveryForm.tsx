@@ -120,7 +120,7 @@ const DiscoveryForm = () => {
 };
 
   const placeholderClass =
-    'placeholder:text-lg md:placeholder:text-xl placeholder:font-extrabold placeholder:tracking-wide placeholder:uppercase placeholder:text-black';
+    'placeholder:text-lg md:placeholder:text-xl  placeholder:tracking-wide placeholder:uppercase placeholder:text-black';
 
   return (
     <section className="border-8 mx-auto max-w-screen-xl md:px-2">
@@ -134,7 +134,7 @@ const DiscoveryForm = () => {
         </p>
         <form
           onSubmit={handleSubmit}
-          className="mx-auto mt-6 grid max-w-4xl grid-cols-1 gap-12 md:grid-cols-2"
+          className="mt-6 grid max-w-4xl p-6 md:p-0 mx-auto grid-cols-1 gap-12 md:grid-cols-2"
           noValidate
         >
           {/* Full Name */}
@@ -175,7 +175,7 @@ const DiscoveryForm = () => {
               name="industry"
               value={formData.industry}
               onChange={handleChange}
-              className={`h-10 md:h-15 w-full border-2 appearance-none rounded-sm bg-white px-3 pr-10 text-sm outline-none focus:border-neutral-500 ${errors.industry ? 'border-red-500' : 'border-gray-500'
+              className={`h-10 md:h-15 w-full border-2 md:text-xl uppercase appearance-none rounded-sm bg-white px-3 pr-10 text-sm outline-none focus:border-neutral-500 ${errors.industry ? 'border-red-500' : 'border-gray-500'
                 } ${placeholderClass}`}
             >
               <option value="" disabled hidden>
@@ -213,14 +213,14 @@ const DiscoveryForm = () => {
           </div>
 
           {/* Areas of Interest */}
-          <div className="rounded-sm text-black border-2 border-black p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-neutral-800">
+          <div className="rounded-sm text-black border-2 border-gray-500 p-4">
+            <p className="text-lg font-semibold uppercase tracking-wide text-black">
               Areas of Interest
             </p>
             <div className="mt-3 space-y-2 text-sm">
               {['Training', 'Hiring', 'Consultant', 'Customer Experience'].map(
                 (option) => (
-                  <label key={option} className="flex items-center gap-2">
+                  <label key={option} className="flex text-lg items-center gap-2">
                     <input
                       type="radio"
                       name="areaOfInterest"
@@ -258,7 +258,7 @@ const DiscoveryForm = () => {
                 onChange={handleChange}
                 placeholder="Brief Description Of Your Company"
                 rows={4}
-                className={`min-h-[90px] rounded-sm border-2 p-3 text-sm outline-none focus:border-neutral-500 ${errors.description ? 'border-red-500' : 'border-gray-500'
+                className={`min-h-[90px] md:h-33 rounded-sm border-2 p-3 text-sm outline-none focus:border-neutral-500 ${errors.description ? 'border-red-500' : 'border-gray-500'
                   } ${placeholderClass}`}
               />
               {errors.description && (

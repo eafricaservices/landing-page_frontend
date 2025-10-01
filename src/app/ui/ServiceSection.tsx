@@ -41,8 +41,7 @@ export default function ServiceSection() {
             <ServiceCard 
             image="/service1.webp"
             title="Workforce Training & Development"
-            description="Equip your team or community with in-demand soft and technical skills through structured, practical training programs.
-            Soft Skills: Sales, Communication, Project Management, Customer Success
+            description="Equip your team with in-demand soft and technical skills through structured, practical training programs.Soft Skills: Sales, Communication, Project Management, Customer Success
             Technical Skills: CRM, Prompt Engineering, AI Tools, IoT Basics"
             direction="left"
              />
@@ -164,13 +163,13 @@ function ServiceCard({
             <motion.div
               animate={{ y: hovered ? "0%" : "55%" }}
               transition={{ type: "spring", stiffness: 600, damping: 52 }}
-              className="absolute bottom-0 w-full backdrop-blur-md bg-white/70 px-4 py-6"
+              className="absolute bottom-0 w-full md:h-40 backdrop-blur-md bg-white/70 px-4 py-6"
             >
               <div className="flex flex-col justify-center items-start space-y-5">
-                <h2 className="font-bold text-base sm:text-lg md:text-2xl">
+                <h2 className="font-bold text-base sm:text-lg md:text-2xl truncate">
                   {title}
                 </h2>
-                <p className="text-sm md:text-lg">{description}</p>
+                <p className="text-sm md:text-lg line-clamp-2">{description}</p>
               </div>
             </motion.div>
           )}
@@ -222,25 +221,27 @@ function WideServiceCard({
       {title && description && (
         <>
           {isMobile ? (
-            <div className="absolute bottom-0 w-full backdrop-blur-md bg-white/70 px-4 py-6">
-              <div className="flex flex-col justify-center items-start space-y-2">
+            <div className="absolute bottom-0 w-full backdrop-blur-md bg-white/50 px-4 py-6">
+              <div className="flex flex-col justify-center items-start space-y-5">
                 <h2 className="font-bold text-base sm:text-lg md:text-2xl">
                   {title}
                 </h2>
-                <p className="text-sm md:text-lg">{description}</p>
+                <p className="text-sm mt-3.5 md:text-lg">{description}</p>
               </div>
             </div>
           ) : (
             <motion.div
-              animate={{ y: hovered ? "0%" : "55%" }}
+              animate={{ y: hovered ? "0%" : "55%",
+                marginBottom: hovered ? 0 : 20
+               }}
               transition={{ type: "spring", stiffness: 600, damping: 52 }}
-              className="absolute bottom-0 w-full backdrop-blur-md bg-white/70 px-4 py-6"
+              className={`absolute bottom-0 w-full backdrop-blur-md bg-white/70 px-4 py-6  }`}
             >
-              <div className="flex flex-col text-black justify-center items-start space-y-4">
+              <div className="flex flex-col text-black justify-center items-start space-y-2">
                 <h2 className="font-bold text-black text-base sm:text-lg md:text-2xl">
                   {title}
                 </h2>
-                <p className="text-sm text-black md:text-lg">{description}</p>
+                <p className="text-sm mt-2.5 text-black md:text-lg">{description}</p>
               </div>
             </motion.div>
           )}
