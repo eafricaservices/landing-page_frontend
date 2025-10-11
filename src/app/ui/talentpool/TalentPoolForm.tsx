@@ -11,7 +11,7 @@ interface FormData {
   linkedin: string;
   desiredRole: string;
   preference: string;
-  cv: File | null;
+  cvUrl: File | null;
 }
 
 interface FormErrors {
@@ -21,7 +21,7 @@ interface FormErrors {
   linkedin?: string;
   desiredRole?: string;
   preference?: string;
-  cv?: string;
+  cvUrl?: string;
 }
 
 const TalentPoolForm: React.FC = () => {
@@ -33,7 +33,7 @@ const TalentPoolForm: React.FC = () => {
     linkedin: "",
     desiredRole: "",
     preference: "",
-    cv: null,
+    cvUrl: null,
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -49,7 +49,7 @@ const TalentPoolForm: React.FC = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setFormData({ ...formData, cv: e.target.files[0] });
+      setFormData({ ...formData, cvUrl: e.target.files[0] });
     }
   };
 
@@ -64,7 +64,7 @@ const TalentPoolForm: React.FC = () => {
     if (!formData.desiredRole.trim())
       newErrors.desiredRole = "Desired Role is required";
     if (!formData.preference) newErrors.preference = "Preference is required";
-    if (!formData.cv) newErrors.cv = "CV upload is required";
+    if (!formData.cvUrl) newErrors.cvUrl = "CV upload is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -87,7 +87,7 @@ const TalentPoolForm: React.FC = () => {
         }
       });
 
-      const res = await axios.post("/api/talent-pool", formPayload, {
+      const res = await axios.post("https://e-africa-platform-backend.onrender.com/api/talent-pool/submit", formPayload, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -100,7 +100,8 @@ const TalentPoolForm: React.FC = () => {
           linkedin: "",
           desiredRole: "",
           preference: "",
-          cv: null,
+          cvUrl: null,
+          
         });
         setErrors({});
         router.push("/success");
@@ -111,7 +112,7 @@ const TalentPoolForm: React.FC = () => {
       } else {
         console.error(error);
       }
-      setErrors({ cv: "Something went wrong. Please try again." });
+      setErrors({ cvUrl: "Something went wrong. Please try again." });
     } finally {
       setSubmitting(false);
     }
@@ -252,7 +253,7 @@ const TalentPoolForm: React.FC = () => {
                 className="flex items-center justify-center gap-3 w-full px-4 py-3 border h-32 border-gray-900 rounded cursor-pointer text-gray-600 text-md uppercase hover:border-green-600 hover:text-green-700 transition"
               >
                 <span className="truncate">
-                  {formData.cv ? formData.cv.name : "Upload CV"}
+                  {formData.cvUrl ? formData.cvUrl.name : "Upload CV"}
                 </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -270,8 +271,8 @@ const TalentPoolForm: React.FC = () => {
                 </svg>
               </label>
 
-              {errors.cv && (
-                <p className="text-red-500 text-sm">{errors.cv}</p>
+              {errors.cvUrl && (
+                <p className="text-red-500 text-sm">{errors.cvUrl}</p>
               )}
             </div>
           </div>

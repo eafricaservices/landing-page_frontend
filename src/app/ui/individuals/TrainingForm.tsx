@@ -79,7 +79,7 @@ const router = useRouter();
       setSubmitting(true);
       setSuccess(null);
 
-      const res = await axios.post("/api/training", formData);
+      const res = await axios.post("https://e-africa-platform-backend.onrender.com/api/training/submit", formData);
       if (res.status === 201) {
         setSuccess("Form submitted successfully!");
         setFormData({

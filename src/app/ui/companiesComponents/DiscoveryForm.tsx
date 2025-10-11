@@ -84,7 +84,7 @@ const DiscoveryForm = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/discovery/submit', {
+      const res = await fetch('https://e-africa-platform-backend.onrender.com/api/discovery/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
