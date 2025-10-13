@@ -8,7 +8,7 @@ interface FormData {
   fullName: string;
   email: string;
   country: string;
-  linkedin: string;
+  linkedIn: string;
   desiredRole: string;
   preference: string;
   cvUrl: File | null;
@@ -18,7 +18,7 @@ interface FormErrors {
   fullName?: string;
   email?: string;
   country?: string;
-  linkedin?: string;
+  linkedIn?: string;
   desiredRole?: string;
   preference?: string;
   cvUrl?: string;
@@ -30,7 +30,7 @@ const TalentPoolForm: React.FC = () => {
     fullName: "",
     email: "",
     country: "",
-    linkedin: "",
+    linkedIn: "",
     desiredRole: "",
     preference: "",
     cvUrl: null,
@@ -49,22 +49,75 @@ const TalentPoolForm: React.FC = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setFormData({ ...formData, cvUrl: e.target.files[0] });
+      const file = e.target.files[0];
+      
+      // Validate file type
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!allowedTypes.includes(file.type)) {
+        setErrors({ ...errors, cvUrl: "Please upload a PDF or Word document" });
+        return;
+      }
+      
+      // Validate file size (5MB limit)
+      const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+      if (file.size > maxSize) {
+        setErrors({ ...errors, cvUrl: "File size must be less than 5MB" });
+        return;
+      }
+      
+      // Clear any previous file errors
+      const newErrors = { ...errors };
+      delete newErrors.cvUrl;
+      setErrors(newErrors);
+      
+      setFormData({ ...formData, cvUrl: file });
     }
   };
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
-    if (!formData.fullName.trim()) newErrors.fullName = "Full Name is required";
-    if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email))
-      newErrors.email = "Valid Email Address is required";
-    if (!formData.country.trim()) newErrors.country = "Country is required";
-    if (!formData.linkedin.trim())
-      newErrors.linkedin = "LinkedIn profile is required";
-    if (!formData.desiredRole.trim())
+    
+    // Full Name validation - must be at least 2 characters
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full Name is required";
+    } else if (formData.fullName.trim().length < 2) {
+      newErrors.fullName = "Full Name must be at least 2 characters";
+    }
+    
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email Address is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "A valid Email Address is required";
+    }
+    
+    // Country validation
+    if (!formData.country.trim()) {
+      newErrors.country = "Country is required";
+    }
+    
+    // LinkedIn validation
+    if (!formData.linkedIn.trim()) {
+      newErrors.linkedIn = "LinkedIn profile is required";
+    }
+    
+    // Desired Role validation
+    if (!formData.desiredRole.trim()) {
       newErrors.desiredRole = "Desired Role is required";
-    if (!formData.preference) newErrors.preference = "Preference is required";
-    if (!formData.cvUrl) newErrors.cvUrl = "CV upload is required";
+    }
+    
+    // Preference validation - must be exactly Remote, Onsite, or Hybrid
+    const validPreferences = ['Remote', 'Onsite', 'Hybrid'];
+    if (!formData.preference) {
+      newErrors.preference = "Preference is required";
+    } else if (!validPreferences.includes(formData.preference)) {
+      newErrors.preference = "Preference must be one of: Remote, Onsite, Hybrid";
+    }
+    
+    // CV upload validation
+    if (!formData.cvUrl) {
+      newErrors.cvUrl = "CV upload is required";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -72,6 +125,10 @@ const TalentPoolForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Debug: Log current form state
+    console.log("Current form data state:", formData);
+    
     if (!validate()) return;
 
     try {
@@ -79,13 +136,50 @@ const TalentPoolForm: React.FC = () => {
       setSuccess(null);
 
       const formPayload = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        if (value instanceof File) {
-          formPayload.append(key, value);
-        } else if (typeof value === "string") {
-          formPayload.append(key, value);
-        }
-      });
+      
+      // Add text fields only if they have values
+      if (formData.fullName.trim()) {
+        formPayload.append('fullName', formData.fullName.trim());
+        console.log(`Added fullName:`, formData.fullName.trim());
+      }
+      
+      if (formData.email.trim()) {
+        formPayload.append('email', formData.email.trim());
+        console.log(`Added email:`, formData.email.trim());
+      }
+      
+      if (formData.country.trim()) {
+        formPayload.append('country', formData.country.trim());
+        console.log(`Added country:`, formData.country.trim());
+      }
+      
+      if (formData.linkedIn.trim()) {
+        formPayload.append('linkedIn', formData.linkedIn.trim());
+        console.log(`Added linkedIn:`, formData.linkedIn.trim());
+      }
+      
+      if (formData.desiredRole.trim()) {
+        formPayload.append('desiredRole', formData.desiredRole.trim());
+        console.log(`Added desiredRole:`, formData.desiredRole.trim());
+      }
+      
+      // Add preference only if selected
+      if (formData.preference) {
+        formPayload.append('preference', formData.preference);
+        console.log(`Added preference:`, formData.preference);
+      }
+      
+      // Add file if present
+      if (formData.cvUrl) {
+        formPayload.append('cvUrl', formData.cvUrl);
+        console.log(`Added file cvUrl:`, formData.cvUrl.name, formData.cvUrl.type, formData.cvUrl.size);
+      }
+
+      // Debug: Log all form data
+      console.log("Form Data being sent:");
+      for (const [key, value] of formPayload.entries()) {
+        console.log(key, value);
+      }
 
       const res = await axios.post("https://e-africa-platform-backend.onrender.com/api/talent-pool/submit", formPayload, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -97,7 +191,7 @@ const TalentPoolForm: React.FC = () => {
           fullName: "",
           email: "",
           country: "",
-          linkedin: "",
+          linkedIn: "",
           desiredRole: "",
           preference: "",
           cvUrl: null,
@@ -107,12 +201,48 @@ const TalentPoolForm: React.FC = () => {
         router.push("/success");
       }
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error(error.message);
+      console.error("Form submission error:", error);
+      
+      if (axios.isAxiosError(error)) {
+        const errorMessage = error.response?.data?.message || error.response?.data?.error || error.message;
+        const statusCode = error.response?.status;
+        const backendErrors = error.response?.data?.errors;
+        
+        console.error("Status Code:", statusCode);
+        console.error("Error Response:", error.response?.data);
+        console.error("Error Message:", errorMessage);
+        
+        // Handle backend validation errors (400)
+        if (statusCode === 400 && backendErrors) {
+          console.error("Backend validation errors:", backendErrors);
+          
+          // Map backend errors to form fields
+          const mappedErrors: FormErrors = {};
+          if (backendErrors.fullName) mappedErrors.fullName = backendErrors.fullName;
+          if (backendErrors.email) mappedErrors.email = backendErrors.email;
+          if (backendErrors.country) mappedErrors.country = backendErrors.country;
+          if (backendErrors.linkedIn) mappedErrors.linkedIn = backendErrors.linkedIn;
+          if (backendErrors.desiredRole) mappedErrors.desiredRole = backendErrors.desiredRole;
+          if (backendErrors.preference) mappedErrors.preference = backendErrors.preference;
+          if (backendErrors.cvUrl) mappedErrors.cvUrl = backendErrors.cvUrl;
+          
+          setErrors(mappedErrors);
+        } else if (statusCode === 400) {
+          setErrors({ 
+            cvUrl: `Validation Error: ${errorMessage}. Please check your inputs and try again.` 
+          });
+        } else {
+          setErrors({ 
+            cvUrl: `Error ${statusCode}: ${errorMessage}` 
+          });
+        }
+      } else if (error instanceof Error) {
+        console.error("General Error:", error.message);
+        setErrors({ cvUrl: `Error: ${error.message}` });
       } else {
-        console.error(error);
+        console.error("Unknown error:", error);
+        setErrors({ cvUrl: "An unknown error occurred. Please try again." });
       }
-      setErrors({ cvUrl: "Something went wrong. Please try again." });
     } finally {
       setSubmitting(false);
     }
@@ -211,14 +341,14 @@ const TalentPoolForm: React.FC = () => {
             <div>
               <input
                 type="text"
-                name="linkedin"
+                name="linkedIn"
                 placeholder="LinkedIn"
-                value={formData.linkedin}
+                value={formData.linkedIn}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 border border-gray-900 rounded ${placeholderClass}`}
               />
-              {errors.linkedin && (
-                <p className="text-red-500 text-sm">{errors.linkedin}</p>
+              {errors.linkedIn && (
+                <p className="text-red-500 text-sm">{errors.linkedIn}</p>
               )}
             </div>
 
