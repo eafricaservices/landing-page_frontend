@@ -110,7 +110,7 @@ export default function ContactForm() {
           placeholder="Full Name"
           value={formData.fullName}
           onChange={handleChange}
-          className={`w-full border-2 px-4 py-5 text-black placeholder:text-black focus:outline-none 
+          className={`w-full border-2 px-4 py-5 text-black text-sm font-medium placeholder:text-sm placeholder:font-medium placeholder:text-gray-500 placeholder:tracking-wide focus:outline-none focus:ring-2 focus:ring-gray-500 
             ${errors.fullName ? "border-red-500" : "border-black"}`}
         />
         {errors.fullName && (
@@ -125,7 +125,7 @@ export default function ContactForm() {
           placeholder="Email Address"
           value={formData.email}
           onChange={handleChange}
-          className={`w-full border-2 px-4 py-5 text-black placeholder:text-black focus:outline-none 
+          className={`w-full border-2 px-4 py-5 text-black text-sm font-medium placeholder:text-sm placeholder:font-medium placeholder:text-gray-500 placeholder:tracking-wide focus:outline-none focus:ring-2 focus:ring-gray-500 
             ${errors.email ? "border-red-500" : "border-black"}`}
         />
         {errors.email && (
@@ -140,7 +140,7 @@ export default function ContactForm() {
           placeholder="Phone Number"
           value={formData.phone}
           onChange={handleChange}
-          className={`w-full border-2 px-4 py-5 text-black placeholder:text-black focus:outline-none 
+          className={`w-full border-2 px-4 py-5 text-black text-sm font-medium placeholder:text-sm placeholder:font-medium placeholder:text-gray-500 placeholder:tracking-wide focus:outline-none focus:ring-2 focus:ring-gray-500 
             ${errors.phone ? "border-red-500" : "border-black"}`}
         />
         {errors.phone && (
@@ -155,7 +155,7 @@ export default function ContactForm() {
           rows={4}
           value={formData.message}
           onChange={handleChange}
-          className={`w-full border-2 px-4 py-3 text-black placeholder:text-black focus:outline-none 
+          className={`w-full border-2 px-4 py-3 text-black text-sm font-medium placeholder:text-sm placeholder:font-medium placeholder:text-gray-500 placeholder:tracking-wide focus:outline-none focus:ring-2 focus:ring-gray-500 
             ${errors.message ? "border-red-500" : "border-black"}`}
         />
         {errors.message && (

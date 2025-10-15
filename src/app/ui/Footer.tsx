@@ -6,7 +6,7 @@ const Footer = () => {
         <div className='flex flex-col md:flex-row justify-between items-center mt-6'>
             <p className='text-black' >© 2025 E-Africa. All rights reserved.</p>
             <div>
-                <p className='text-black'>All Rights Reserved | <span><a href="" target="_blank" rel="noopener noreferrer" className='text-green-500 underline underline-offset-2' >Privacy Policy</a></span> |  <span> <a href="http://" target="_blank" rel="noopener noreferrer" className='text-green-500 underline underline-offset-[2px]'> Terms of Service</a></span></p>
+                <p className='text-black'>All Rights Reserved | <span><a href=""  className='text-green-500 underline underline-offset-2' >Privacy Policy</a></span> |  <span> <a href=""  className='text-green-500 underline underline-offset-[2px]'> Terms of Service</a></span></p>
 
             </div>
 

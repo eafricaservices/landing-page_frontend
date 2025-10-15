@@ -79,7 +79,21 @@ const router = useRouter();
       setSubmitting(true);
       setSuccess(null);
 
-      const res = await axios.post("https://e-africa-platform-backend.onrender.com/api/training/submit", formData);
+      // Map frontend field names to backend expected field names
+      const backendData = {
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        country: formData.country,
+        age: formData.age,
+        preferredTraining: formData.preferredTraining,
+        howDidYouHear: formData.referral,  // Backend expects 'howDidYouHear'
+        whyJoin: formData.reason,          // Backend expects 'whyJoin'
+      };
+
+      console.log("Sending data to backend:", backendData);
+
+      const res = await axios.post("https://e-africa-platform-backend.onrender.com/api/trainings/submit", backendData);
       if (res.status === 201) {
         setSuccess("Form submitted successfully!");
         setFormData({
@@ -89,26 +103,43 @@ const router = useRouter();
           country: "",
           age: "",
           preferredTraining: "",
-          referral: "",
-          reason: "",
+          referral: "",  
+          reason: "",    
         });
         setErrors({});
         router.push("/success");
       }
 } catch (error: unknown) {
-    if (error instanceof Error) {
-        console.error(error.message);
+    console.error("Training form submission error:", error);
+    
+    if (axios.isAxiosError(error)) {
+        const statusCode = error.response?.status;
+        const data = error.response?.data || {};
+        
+        console.error("Status Code:", statusCode);
+        console.error("Error Response:", data);
+        
+        if (statusCode === 400 && data.errors) {
+            // Handle validation errors
+            console.error("Validation errors:", data.errors);
+            setErrors({ reason: `Validation error: ${JSON.stringify(data.errors)}` });
+        } else {
+            setErrors({ reason: data.message || error.message || "Something went wrong. Please try again." });
+        }
+    } else if (error instanceof Error) {
+        console.error("General error:", error.message);
+        setErrors({ reason: error.message });
     } else {
-        console.error(error);
+        console.error("Unknown error:", error);
+        setErrors({ reason: "Something went wrong. Please try again." });
     }
-    setErrors({ reason: "Something went wrong. Please try again." });
     } finally {
     setSubmitting(false);
     }
       };
 
       const placeholderClass =
-    'placeholder:text-md   placeholder:uppercase placeholder:text-gray-600';
+    'placeholder:text-sm placeholder:font-medium placeholder:text-gray-500 placeholder:tracking-wide';
 
 
   return (
@@ -136,7 +167,7 @@ const router = useRouter();
             placeholder="Full Name"
             value={formData.fullName}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border border-gray-900 rounded ${placeholderClass}`}
+            className={`w-full p-2 h-12 md:h-15 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}`}
           />
           {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName}</p>}
         </div>
@@ -149,7 +180,7 @@ const router = useRouter();
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded ${placeholderClass}`}
+            className={`w-full p-2 h-12 md:h-15 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}`}
           />
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
         </div>
@@ -161,7 +192,7 @@ const router = useRouter();
             placeholder="Phone Number"
             value={formData.phone}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded ${placeholderClass}`}
+            className={`w-full p-2 h-12 md:h-15 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}`}
           />
           {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
         </div>
@@ -173,19 +204,19 @@ const router = useRouter();
             placeholder="Country"
             value={formData.country}
             onChange={handleChange}
-            className={`w-full p-2 border-1 border-gray-600  h-10 md:h-15  rounded ${placeholderClass}`}
+            className={`w-full p-2 h-12 md:h-15 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}` }
           />
           {errors.country && <p className="text-red-500 text-sm">{errors.country}</p>}
         </div>
         {/* Age */}
         <div>
           <input
-            type="text"
+            type="number"
             name="age"
             placeholder="Age"
             value={formData.age}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded ${placeholderClass}` }
+            className={`w-full p-2 h-12 md:h-15 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}` }
           />
           {errors.age && <p className="text-red-500 text-sm">{errors.age}</p>}
         </div>
@@ -195,13 +226,13 @@ const router = useRouter();
             name="preferredTraining"
             value={formData.preferredTraining}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded text-gray-600 md:text-md ${
-            formData.preferredTraining === "" ? "uppercase" : "font-normal"
-          } ${placeholderClass}` }
+            required
+            data-placeholder={formData.preferredTraining === ""}
+            className="w-full p-2 h-12 md:h-15 border border-gray-900 rounded focus:outline-none focus:ring-2 focus:ring-gray-500 text-sm font-medium"
           >
             <option value="" disabled>
               Preferred Training
-              </option>
+            </option>
             {[
               "Soft Skills Development",
               "Technical Skills",
@@ -229,11 +260,11 @@ const router = useRouter();
             name="referral"
             value={formData.referral}
             onChange={handleChange}
-            className={`w-full p-2 h-10 md:h-15 border border-gray-900  rounded text-gray-600 md:text-md ${
-            formData.preferredTraining === "" ? "uppercase" : "font-normal"
-          } ${placeholderClass}` }
+            required
+            data-placeholder={formData.referral === ""}
+            className="w-full p-2 h-12 md:h-15 border border-gray-900 rounded focus:outline-none focus:ring-2 focus:ring-gray-500 text-sm font-medium"
           >
-            <option value="">How Did You Hear About Us</option>
+            <option value="" disabled>How Did You Hear About Us</option>
             {["Facebook", "Twitter", "LinkedIn"].map((opt) => (
               <option key={opt} value={opt}>
                 {opt}
@@ -251,7 +282,7 @@ const router = useRouter();
             placeholder="Why Do You Want To Join?"
             value={formData.reason}
             onChange={handleChange}
-            className={`w-full p-2 border border-gray-900  rounded ${placeholderClass}` }
+            className={`w-full p-2 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}` }
             rows={4}
           />
           {errors.reason && <p className="text-red-500 text-sm">{errors.reason}</p>}

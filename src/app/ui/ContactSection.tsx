@@ -1,9 +1,10 @@
 
 'use client';
 
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaTiktok } from "react-icons/fa";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 import Image from "next/image";
+import Link from "next/link";
 import ContactForm from "./ContactForm"; 
 
 export default function ContactSection() {
@@ -17,12 +18,28 @@ export default function ContactSection() {
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10">
+
+        {/* contact details */}
         <div className="md:w-1/5 w-full hidden sm:flex flex-col border-r-2 md:border-r-green-700 md:pr-6">
           <div className="flex flex-col items-start">
             <Image src="/E-africa.png" alt="E-AFRICA Logo" width={120} height={50} />
             <h3 className="text-green-800 font-semibold mt-2 mb-4 text-lg md:text-2xl">JOIN US ON</h3>
-            <div className="flex gap-4 text-green-800 text-xl mb-6">
-              <FaFacebookF /><FaTwitter /><FaInstagram /><FaLinkedinIn /><FaYoutube />
+            <div className="flex flex-wrap gap-4 text-green-800 text-xl mb-6">
+              <Link href="https://web.facebook.com/profile.php?id=61562074914381" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaFacebookF />
+              </Link>
+              <Link href="https://x.com/empower__africa?s=21" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaTwitter />
+              </Link>
+              <Link href="https://www.instagram.com/e.africa1?igsh=MWhuanR1ODh4NGZmcA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaInstagram />
+              </Link>
+              <Link href="https://www.tiktok.com/@e_africa01?_t=ZS-8zrl8nXXinB&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaTiktok />
+              </Link>
+              <Link href="https://youtube.com/@e-africaserices?si=CbConmy1ptbJny3Z" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaYoutube />
+              </Link>
             </div>
 
             <div className="flex flex-col text-sm text-gray-800">
@@ -54,7 +71,7 @@ export default function ContactSection() {
         <div className="md:w-2/3 w-full">
           <ContactForm />
         </div>
-          <div className=" flex flex-col sm:hidden w-full  md:pr-6">
+          <div className="flex flex-col sm:hidden w-full md:pr-6">
           <div className="flex flex-col items-center  text-center md:text-left">
             <Image
               src="/E-africa.png" 
@@ -66,11 +83,21 @@ export default function ContactSection() {
             <h3 className="text-green-800 font-semibold mt-2 mb-4 text-lg md:text-2xl">JOIN US ON</h3>
 
             <div className="flex gap-4 text-green-800 text-xl mb-6 justify-center md:justify-start">
-              <FaFacebookF />
-              <FaTwitter />
-              <FaInstagram />
-              <FaLinkedinIn />
-              <FaYoutube />
+              <Link href="https://web.facebook.com/profile.php?id=61562074914381" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaFacebookF />
+              </Link>
+              <Link href="https://x.com/empower__africa?s=21" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaTwitter />
+              </Link>
+              <Link href="https://www.instagram.com/e.africa1?igsh=MWhuanR1ODh4NGZmcA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaInstagram />
+              </Link>
+              <Link href="https://www.tiktok.com/@e_africa01?_t=ZS-8zrl8nXXinB&_r=1" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaTiktok />
+              </Link>
+              <Link href="https://youtube.com/@e-africaserices?si=CbConmy1ptbJny3Z" target="_blank" rel="noopener noreferrer" className="hover:text-green-600 transition-colors">
+                <FaYoutube />
+              </Link>
             </div>
 
             <div className="flex flex-col text-sm  text-gray-800">

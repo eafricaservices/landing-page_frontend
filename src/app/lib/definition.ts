@@ -15,6 +15,8 @@ export type ButtonProps = {
   
   export type signinProps = {
       className?: string; 
+      onLinkClick?: () => void
+      
   }
   export type patnerCardProps = {
       title: string;

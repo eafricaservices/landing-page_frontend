@@ -120,7 +120,7 @@ const DiscoveryForm = () => {
 };
 
   const placeholderClass =
-    'placeholder:text-lg md:placeholder:text-xl  placeholder:tracking-wide placeholder:uppercase placeholder:text-black';
+    'placeholder:text-sm placeholder:font-medium placeholder:text-gray-500 placeholder:tracking-wide';
 
   return (
     <section className="border-8 mx-auto max-w-screen-xl md:px-2">
@@ -145,7 +145,7 @@ const DiscoveryForm = () => {
               value={formData.fullName}
               onChange={handleChange}
               placeholder="Full Name"
-              className={`h-10 md:h-15 rounded-sm border-2 px-3 text-sm outline-none focus:border-neutral-500 ${errors.fullName ? 'border-red-500' : 'border-gray-500'
+              className={`h-10 md:h-15 rounded-sm border-2 px-3 text-black text-sm font-medium outline-none focus:border-neutral-500 focus:ring-2 focus:ring-gray-500 ${errors.fullName ? 'border-red-500' : 'border-gray-500'
                 } ${placeholderClass}`}
             />
             {errors.fullName && (
@@ -161,7 +161,7 @@ const DiscoveryForm = () => {
               value={formData.companyName}
               onChange={handleChange}
               placeholder="Company Name"
-              className={`h-10 md:h-15 rounded-sm border-2 px-3 text-sm outline-none focus:border-neutral-500 ${errors.companyName ? 'border-red-500' : 'border-gray-500'
+              className={`h-10 md:h-15 rounded-sm border-2 px-3 text-black text-sm font-medium outline-none focus:border-neutral-500 focus:ring-2 focus:ring-gray-500 ${errors.companyName ? 'border-red-500' : 'border-gray-500'
                 } ${placeholderClass}`}
             />
             {errors.companyName && (
@@ -175,10 +175,12 @@ const DiscoveryForm = () => {
               name="industry"
               value={formData.industry}
               onChange={handleChange}
-              className={`h-10 md:h-15 w-full border-2 md:text-xl uppercase appearance-none rounded-sm bg-white px-3 pr-10 text-sm outline-none focus:border-neutral-500 ${errors.industry ? 'border-red-500' : 'border-gray-500'
-                } ${placeholderClass}`}
+              required
+              data-placeholder={formData.industry === ""}
+              className={`h-10 md:h-15 w-full border-2 appearance-none rounded-sm bg-white px-3 pr-10 text-sm font-medium outline-none focus:border-neutral-500 focus:ring-2 focus:ring-gray-500 ${errors.industry ? 'border-red-500' : 'border-gray-500'
+                }`}
             >
-              <option value="" disabled hidden>
+              <option value="" disabled>
                 Industry
               </option>
               <option>Technology</option>
@@ -204,7 +206,7 @@ const DiscoveryForm = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email Address"
-              className={`h-10 md:h-15 rounded-sm border-2 px-3 text-sm outline-none focus:border-neutral-500 ${errors.email ? 'border-red-500' : 'border-gray-500'
+              className={`h-10 md:h-15 rounded-sm border-2 px-3 text-black text-sm font-medium outline-none focus:border-neutral-500 focus:ring-2 focus:ring-gray-500 ${errors.email ? 'border-red-500' : 'border-gray-500'
                 } ${placeholderClass}`}
             />
             {errors.email && (
@@ -220,7 +222,7 @@ const DiscoveryForm = () => {
             <div className="mt-3 space-y-2 text-sm">
               {['Training', 'Hiring', 'Consultant', 'Customer Experience'].map(
                 (option) => (
-                  <label key={option} className="flex text-lg items-center gap-2">
+                  <label key={option} className="flex items-center gap-2">
                     <input
                       type="radio"
                       name="areaOfInterest"
@@ -228,7 +230,7 @@ const DiscoveryForm = () => {
                       checked={formData.areaOfInterest === option}
                       onChange={handleChange}
                     />
-                    <span>{option}</span>
+                    <span className="text-sm font-medium text-gray-500 tracking-wide">{option}</span>
                   </label>
                 )
               )}
@@ -258,7 +260,7 @@ const DiscoveryForm = () => {
                 onChange={handleChange}
                 placeholder="Brief Description Of Your Company"
                 rows={4}
-                className={`min-h-[90px] md:h-33 rounded-sm border-2 p-3 text-sm outline-none focus:border-neutral-500 ${errors.description ? 'border-red-500' : 'border-gray-500'
+                className={`min-h-[90px] md:h-33 rounded-sm border-2 p-3 text-black text-sm font-medium outline-none focus:border-neutral-500 focus:ring-2 focus:ring-gray-500 ${errors.description ? 'border-red-500' : 'border-gray-500'
                   } ${placeholderClass}`}
               />
               {errors.description && (

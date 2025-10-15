@@ -24,8 +24,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
-@layer components {
+
+html {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+* {
+  box-sizing: border-box;
+}
+/* @layer components {
   .card-v-top {
     clip-path: polygon(0 0,
         50% 40%,
@@ -33,4 +42,88 @@ body {
         100% 100%,
         0 100%);
   }
+} */
+
+@layer components {
+  .card-v-top {
+    position: relative;
+  }
+
+  .card-v-top::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: white;
+    /* matches card color */
+        clip-path: polygon(0 0,
+              50% 40%,
+              100% 0,
+              100% 100%,
+              0 100%)
+  }
+}
+
+
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-y {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-x {
+  display: flex;
+  width: max-content;
+  animation: scroll-x 40s linear infinite;
+}
+
+.animate-scroll-y {
+  animation: scroll-y 50s linear infinite;
+}
+
+/* Select and Option styling for consistent form appearance */
+select {
+  color: #000000; /* black - matches input field styling */
+}
+
+/* Placeholder state styling using data attribute approach */
+select[data-placeholder="true"] {
+  color: #6b7280 !important; /* gray-500 for placeholder state */
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* When select has a real value selected */
+select[data-placeholder="false"] {
+  color: #000000 !important; /* black when option is selected */
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+select option {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  padding: 8px 12px;
+  color: #000000 !important; /* black for all options */
+}
+
+select option[value=""] {
+  color: #6b7280 !important; /* gray-500 for placeholder option */
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.025em !important;
 }

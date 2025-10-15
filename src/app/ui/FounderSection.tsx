@@ -15,7 +15,7 @@ export default function FounderSection() {
           </h2>
           <div className="relative w-[90%] md:w-[400px] h-[420px] md:h-[520px] -mb-10 md:-mb-20 z-0">
             <Image
-              src="/clinton.webp"
+              src="/clinton.jpg"
               alt="Clinton Imemeh"
               fill
               className="object-cover object-top rounded-md shadow-md"

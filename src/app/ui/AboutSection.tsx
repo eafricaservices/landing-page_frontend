@@ -32,9 +32,9 @@ const AboutSection = () => {
 
       {/* GREEN SECTION */}
       <div className="bg-green-800">
-        <div className="md:max-w-[80%] md:mx-auto px-7 text-white py-10 md:py-20 flex flex-col sm:flex-row justify-between md:gap-13 md:px-15">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-white py-10 md:py-16 lg:py-20 flex flex-col sm:flex-row justify-between gap-6 md:gap-8 lg:gap-12">
           <motion.h3
-            className="text-xl font-bold mb-4 md:text-2xl"
+            className="text-xl font-bold mb-4 md:text-2xl flex-shrink-0"
             variants={fadeLeft}
             initial="hidden"
             whileInView="visible"
@@ -45,7 +45,7 @@ const AboutSection = () => {
           </motion.h3>
 
           <motion.p
-            className="text-base text-white md:text-2xl leading-relaxed max-w-5xl"
+            className="text-base text-white md:text-lg lg:text-xl xl:text-2xl leading-relaxed max-w-4xl"
             variants={fadeRight}
             initial="hidden"
             whileInView="visible"
@@ -60,12 +60,12 @@ const AboutSection = () => {
       </div>
 
       {/* WHO WE SERVE SECTION */}
-      <div className="py-16 md:max-w-[90%] md:mx-auto md:mt-10 flex flex-col">
-        <div className="flex flex-col items-start w-full">
-          <div className="flex flex-col sm:flex-row justify-between w-full">
+      <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col w-full">
             
             <motion.div
-              className="md:flex-1/7 text-center"
+              className="text-center mb-8 md:mb-12"
               initial="hidden"
               whileInView="visible"
               variants={fadeLeft}
@@ -73,24 +73,24 @@ const AboutSection = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl text-black md:text-3xl font-bold mb-2">WHO WE SERVE</h3>
-              <p className="text-black mb-10 md:text-xl">
-                Choose The Path That <br /> Matches Your Journey.
+              <p className="text-black mb-4 md:text-xl">
+                Choose The Path That Matches Your Journey.
               </p>
             </motion.div>
 
-            {/* TWO COLUMNS */}
-            <div className="flex md:flex-2/3 flex-col p-6 sm:flex-row md:justify-items-start w-auto gap-9">
+            {/* WHO WE SERVE CARDS */}
+            <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-8 md:gap-12 w-full max-w-6xl mx-auto">
 
               {/* GROW YOUR SKILLS */}
               <motion.div
-                className="flex flex-col w-full sm:w-[45%] max-w-md text-left"
+                className="flex flex-col w-full md:w-1/2 max-w-md mx-auto text-left"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
                 transition={{ duration: 0.9, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <div className="relative h-94 rounded-xl overflow-hidden shadow-lg mb-6 hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:scale-105 transition-all duration-300">
+                <div className="relative h-64 md:h-80 lg:h-94 rounded-xl overflow-hidden shadow-lg mb-6 hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:scale-105 transition-all duration-300">
                   <Image fill src="/serve-1.webp" alt="Grow Your Skills" className="object-cover w-full h-full" />
                 </div>
 
@@ -112,14 +112,14 @@ const AboutSection = () => {
 
               {/* TRAIN, HIRE, TRANSFORM */}
               <motion.div
-                className="flex flex-col w-full sm:w-[45%] max-w-md text-left"
+                className="flex flex-col w-full md:w-1/2 max-w-md mx-auto text-left"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
                 transition={{ duration: 1.2, delay: 0.9 }}
                 viewport={{ once: true }}
               >
-                <div className="relative h-94 rounded-xl overflow-hidden shadow-lg mb-6 hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:scale-105 transition-all duration-300">
+                <div className="relative h-64 md:h-80 lg:h-94 rounded-xl overflow-hidden shadow-lg mb-6 hover:shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:scale-105 transition-all duration-300">
                   <Image fill src="/serve-2.webp" alt="Train, Hire, Transform" className="object-cover w-full h-full" />
                 </div>
 

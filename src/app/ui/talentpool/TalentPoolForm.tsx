@@ -22,6 +22,7 @@ interface FormErrors {
   desiredRole?: string;
   preference?: string;
   cvUrl?: string;
+  general?: string;
 }
 
 const TalentPoolForm: React.FC = () => {
@@ -132,124 +133,95 @@ const TalentPoolForm: React.FC = () => {
     if (!validate()) return;
 
     try {
-      setSubmitting(true);
-      setSuccess(null);
+  setSubmitting(true);
+  setSuccess(null);
 
-      const formPayload = new FormData();
-      
-      // Add text fields only if they have values
-      if (formData.fullName.trim()) {
-        formPayload.append('fullName', formData.fullName.trim());
-        console.log(`Added fullName:`, formData.fullName.trim());
-      }
-      
-      if (formData.email.trim()) {
-        formPayload.append('email', formData.email.trim());
-        console.log(`Added email:`, formData.email.trim());
-      }
-      
-      if (formData.country.trim()) {
-        formPayload.append('country', formData.country.trim());
-        console.log(`Added country:`, formData.country.trim());
-      }
-      
-      if (formData.linkedIn.trim()) {
-        formPayload.append('linkedIn', formData.linkedIn.trim());
-        console.log(`Added linkedIn:`, formData.linkedIn.trim());
-      }
-      
-      if (formData.desiredRole.trim()) {
-        formPayload.append('desiredRole', formData.desiredRole.trim());
-        console.log(`Added desiredRole:`, formData.desiredRole.trim());
-      }
-      
-      // Add preference only if selected
-      if (formData.preference) {
-        formPayload.append('preference', formData.preference);
-        console.log(`Added preference:`, formData.preference);
-      }
-      
-      // Add file if present
-      if (formData.cvUrl) {
-        formPayload.append('cvUrl', formData.cvUrl);
-        console.log(`Added file cvUrl:`, formData.cvUrl.name, formData.cvUrl.type, formData.cvUrl.size);
-      }
+  const formPayload = new FormData();
 
-      // Debug: Log all form data
-      console.log("Form Data being sent:");
-      for (const [key, value] of formPayload.entries()) {
-        console.log(key, value);
-      }
+  // Add text fields only if they have values
+  if (formData.fullName.trim()) formPayload.append("fullName", formData.fullName.trim());
+  if (formData.email.trim()) formPayload.append("email", formData.email.trim());
+  if (formData.country.trim()) formPayload.append("country", formData.country.trim());
+  if (formData.linkedIn.trim()) formPayload.append("linkedIn", formData.linkedIn.trim());
+  if (formData.desiredRole.trim()) formPayload.append("desiredRole", formData.desiredRole.trim());
+  if (formData.preference) formPayload.append("preference", formData.preference);
+  if (formData.cvUrl) formPayload.append("cvUrl", formData.cvUrl);
 
-      const res = await axios.post("https://e-africa-platform-backend.onrender.com/api/talent-pool/submit", formPayload, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      if (res.status === 201) {
-        setSuccess("Form submitted successfully!");
-        setFormData({
-          fullName: "",
-          email: "",
-          country: "",
-          linkedIn: "",
-          desiredRole: "",
-          preference: "",
-          cvUrl: null,
-          
-        });
-        setErrors({});
-        router.push("/success");
+  // Debug: Log FormData entries
+      for (const pair of formPayload.entries()) {        
+        console.log(""); 
+        console.log("FormData entry:"); 
+        console.log("FormData entry:", pair); 
+        console.log(pair[0], pair[1]);
       }
-    } catch (error: unknown) {
-      console.error("Form submission error:", error);
-      
-      if (axios.isAxiosError(error)) {
-        const errorMessage = error.response?.data?.message || error.response?.data?.error || error.message;
-        const statusCode = error.response?.status;
-        const backendErrors = error.response?.data?.errors;
-        
-        console.error("Status Code:", statusCode);
-        console.error("Error Response:", error.response?.data);
-        console.error("Error Message:", errorMessage);
-        
-        // Handle backend validation errors (400)
-        if (statusCode === 400 && backendErrors) {
-          console.error("Backend validation errors:", backendErrors);
-          
-          // Map backend errors to form fields
-          const mappedErrors: FormErrors = {};
-          if (backendErrors.fullName) mappedErrors.fullName = backendErrors.fullName;
-          if (backendErrors.email) mappedErrors.email = backendErrors.email;
-          if (backendErrors.country) mappedErrors.country = backendErrors.country;
-          if (backendErrors.linkedIn) mappedErrors.linkedIn = backendErrors.linkedIn;
-          if (backendErrors.desiredRole) mappedErrors.desiredRole = backendErrors.desiredRole;
-          if (backendErrors.preference) mappedErrors.preference = backendErrors.preference;
-          if (backendErrors.cvUrl) mappedErrors.cvUrl = backendErrors.cvUrl;
-          
-          setErrors(mappedErrors);
-        } else if (statusCode === 400) {
-          setErrors({ 
-            cvUrl: `Validation Error: ${errorMessage}. Please check your inputs and try again.` 
-          });
-        } else {
-          setErrors({ 
-            cvUrl: `Error ${statusCode}: ${errorMessage}` 
-          });
+  const res = await axios.post("https://e-africa-platform-backend.onrender.com/api/talent-pool/submit", formPayload, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  if (res.status === 201) {
+    setSuccess("Form submitted successfully!");
+    setFormData({
+      fullName: "",
+      email: "",
+      country: "",
+      linkedIn: "",
+      desiredRole: "",
+      preference: "",
+      cvUrl: null,
+    });
+    setErrors({});
+    router.push("/success");
+  }
+} catch (error: unknown) {
+  console.error("Form submission error:", error);
+
+  if (axios.isAxiosError(error)) {
+    const statusCode = error.response?.status;
+    const data = error.response?.data || {};
+    const backendErrors = data.errors;
+    const backendMessage = data.message || "An unexpected error occurred.";
+
+    // Log detailed error information
+    console.error("Status Code:", statusCode);
+    console.error("Error Response Data:", data);
+    console.error("Backend Errors:", backendErrors);
+    console.error("Backend Message:", backendMessage);
+
+    //  Handle Validation Errors (400)
+      if (statusCode === 400) {
+      if (backendErrors) {
+        // Backend sent field-specific validation errors
+        const mappedErrors: FormErrors = {};
+        for (const key in backendErrors) {
+          mappedErrors[key as keyof FormErrors] = backendErrors[key];
         }
-      } else if (error instanceof Error) {
-        console.error("General Error:", error.message);
-        setErrors({ cvUrl: `Error: ${error.message}` });
+        setErrors(mappedErrors);
+      } else if (typeof data.message === "object") {
+        // If message itself is an object (unexpected)
+        setErrors({ general: JSON.stringify(data.message) });
       } else {
-        console.error("Unknown error:", error);
-        setErrors({ cvUrl: "An unknown error occurred. Please try again." });
+        setErrors({ general: data.message || "Validation failed. Please check your inputs." });
       }
-    } finally {
-      setSubmitting(false);
+      return;
     }
+
+
+    //  Handle General Errors with Message (like 500)
+    setErrors({
+      general: backendMessage,
+    });
+  } else if (error instanceof Error) {
+    setErrors({ general: error.message });
+  } else {
+    setErrors({ general: "An unknown error occurred. Please try again." });
+  }
+} finally {
+  setSubmitting(false);
+}
   };
 
   const placeholderClass =
-    'placeholder:text-md   placeholder:uppercase placeholder:text-gray-600';
+    'placeholder:text-sm placeholder:font-medium placeholder:text-gray-500 placeholder:tracking-wide';
 
   return (
     <div>
@@ -272,7 +244,7 @@ const TalentPoolForm: React.FC = () => {
                 placeholder="Full Name"
                 value={formData.fullName}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 border border-gray-900 rounded ${placeholderClass}`}
+                className={`w-full px-4 py-3 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}`}
               />
               {errors.fullName && (
                 <p className="text-red-500 text-sm">{errors.fullName}</p>
@@ -287,7 +259,7 @@ const TalentPoolForm: React.FC = () => {
                 placeholder="Country"
                 value={formData.country}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 border border-gray-900 rounded ${placeholderClass}`}
+                className={`w-full px-4 py-3 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}`}
               />
               {errors.country && (
                 <p className="text-red-500 text-sm">{errors.country}</p>
@@ -296,7 +268,7 @@ const TalentPoolForm: React.FC = () => {
 
             {/* Preference */}
             <div>
-              <label className="block text-gray-600 text-md uppercase mb-2">
+              <label className="block text-gray-800 text-md uppercase mb-2">
                 PREFERENCE
               </label>
               <div className="border h-45  border-gray-900 rounded px-4 py-4 space-y-4">
@@ -310,7 +282,7 @@ const TalentPoolForm: React.FC = () => {
                       onChange={handleChange}
                       className="form-radio text-green-600"
                     />
-                    <span>{opt}</span>
+                    <span className="text-sm font-medium text-gray-800 tracking-wide">{opt}</span>
                   </label>
                 ))}
               </div>
@@ -330,7 +302,7 @@ const TalentPoolForm: React.FC = () => {
                 placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 border border-gray-900 rounded ${placeholderClass}`}
+                className={`w-full px-4 py-3 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}`}
               />
               {errors.email && (
                 <p className="text-red-500 text-sm">{errors.email}</p>
@@ -345,7 +317,7 @@ const TalentPoolForm: React.FC = () => {
                 placeholder="LinkedIn"
                 value={formData.linkedIn}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 border border-gray-900 rounded ${placeholderClass}`}
+                className={`w-full px-4 py-3 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}`}
               />
               {errors.linkedIn && (
                 <p className="text-red-500 text-sm">{errors.linkedIn}</p>
@@ -360,7 +332,7 @@ const TalentPoolForm: React.FC = () => {
                 placeholder="Desired Role"
                 value={formData.desiredRole}
                 onChange={handleChange}
-                className={`w-full px-4 py-3 border border-gray-900 rounded ${placeholderClass}`}
+                className={`w-full px-4 py-3 border border-gray-900 rounded text-black text-sm font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 ${placeholderClass}`}
               />
               {errors.desiredRole && (
                 <p className="text-red-500 text-sm">{errors.desiredRole}</p>
@@ -380,7 +352,7 @@ const TalentPoolForm: React.FC = () => {
 
               <label
                 htmlFor="cv-upload"
-                className="flex items-center justify-center gap-3 w-full px-4 py-3 border h-32 border-gray-900 rounded cursor-pointer text-gray-600 text-md uppercase hover:border-green-600 hover:text-green-700 transition"
+                className="flex items-center justify-center gap-3 w-full px-4 py-3 border h-32 border-gray-900 rounded cursor-pointer text-gray-500 text-md  hover:border-green-600 hover:text-green-700 transition"
               >
                 <span className="truncate">
                   {formData.cvUrl ? formData.cvUrl.name : "Upload CV"}
@@ -410,6 +382,9 @@ const TalentPoolForm: React.FC = () => {
 
         {/* Submit */}
         <div className="text-center">
+          {errors.general && (
+              <p className="text-red-500 text-center">{errors.general}</p>
+           )}
           <button
             type="submit"
             disabled={submitting}
